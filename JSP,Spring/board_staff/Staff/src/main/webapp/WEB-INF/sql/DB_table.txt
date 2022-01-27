@@ -1,0 +1,156 @@
+//mySQL
+create table code_skill (
+skill_code smallint,
+skill_name varchar(20) not null unique,
+primary key(skill_code)
+);
+
+create table code_religion (
+religion_code smallint,
+religion_name varchar(20) not null unique,
+primary key(religion_code)
+);
+
+create table code_school (
+school_code smallint,
+school_name varchar(20) not null unique,
+primary key(school_code)
+);
+
+create table staff (
+staff_no smallint,
+staff_name varchar(14) not null,
+jumin_no char(14) not null unique,
+school_code smallint not null,
+religion_code smallint not null,
+graduate_day char(10) not null,
+foreign key(religion_code) references code_religion(religion_code),
+foreign key(school_code) references code_school(school_code),
+primary key(staff_no)
+);
+
+create table staff_skill (
+staff_no smallint,
+skill_code smallint,
+primary key(staff_no,skill_code)
+);
+
+
+// 데이터 mySQL
+insert into code_skill values(1, 'Java' );
+insert into code_skill values(2, 'JSP' );
+insert into code_skill values(3, 'ASP' );
+insert into code_skill values(4, 'PHP' );
+insert into code_skill values(5, 'Delphi' );
+insert into code_religion values(1, '기독교' );
+insert into code_religion values(2, '천주교' );
+insert into code_religion values(3, '불교' );
+insert into code_religion values(4, '이슬람' );
+insert into code_religion values(5, '무교' );
+insert into code_school values(1, '고졸' );
+insert into code_school values(2, '전문대졸' );
+insert into code_school values(3, '일반대졸' );
+
+insert into staff values(1,'저팔계','831225-1122331',2,3,date_format(DATE_ADD(NOW(), INTERVAL -19 YEAR),'%Y-%m-%d'));
+insert into staff values(2,'사오정','851225-1092492',1,2,date_format(DATE_ADD(NOW(), INTERVAL -17 YEAR),'%Y-%m-%d'));
+insert into staff values(3,'손오공','931225-1028182',3,3,date_format(DATE_ADD(NOW(), INTERVAL -10 YEAR),'%Y-%m-%d'));
+insert into staff values(4,'삼장법사','781225-1820382',3,4,date_format(DATE_ADD(NOW(), INTERVAL -19 YEAR),'%Y-%m-%d'));
+insert into staff values(5,'홍길동','951225-1130292',1,1,date_format(DATE_ADD(NOW(), INTERVAL -10 YEAR),'%Y-%m-%d'));
+insert into staff values(6,'임꺽정','881225-1123092',3,5,date_format(DATE_ADD(NOW(), INTERVAL -15 YEAR),'%Y-%m-%d'));
+insert into staff values(7,'이순신','891225-1058722',3,2,date_format(DATE_ADD(NOW(), INTERVAL -16 YEAR),'%Y-%m-%d'));
+insert into staff values(8,'오일남','781225-1402852',2,4,date_format(DATE_ADD(NOW(), INTERVAL -19 YEAR),'%Y-%m-%d'));
+insert into staff values(9,'성기훈','911225-1907836',1,5,date_format(DATE_ADD(NOW(), INTERVAL -13 YEAR),'%Y-%m-%d'));
+insert into staff values(10,'조상우','921225-1058372',1,3,date_format(DATE_ADD(NOW(), INTERVAL -12 YEAR),'%Y-%m-%d'));
+insert into staff values(11,'장덕수','861225-1583937',2,4,date_format(DATE_ADD(NOW(), INTERVAL -17 YEAR),'%Y-%m-%d'));
+insert into staff values(12,'강새벽','961225-2756271',3,3,date_format(DATE_ADD(NOW(), INTERVAL -11 YEAR),'%Y-%m-%d'));
+insert into staff values(13,'한미녀','861225-2322431',2,2,date_format(DATE_ADD(NOW(), INTERVAL -15 YEAR),'%Y-%m-%d'));
+
+
+
+
+//계정 생성 오라클
+create user king  identified by k123;
+grant connect,resource,dba to king;
+
+//오라클
+create table code_skill (
+skill_code number(3),
+skill_name varchar2(20) not null unique,
+primary key(skill_code)
+);
+create sequence code_skill_seq start with 1 increment by 1;
+
+create table code_religion (
+religion_code number(3),
+religion_name varchar2(20) not null unique,
+primary key(religion_code)
+);
+create sequence code_religion_seq start with 1 increment by 1;
+
+create table code_school (
+school_code number(3),
+school_name varchar2(20) not null unique,
+primary key(school_code)
+);
+create sequence code_school_seq start with 1 increment by 1;
+
+create table staff (
+staff_no number(3),
+staff_name varchar2(14) not null,
+jumin_no char(14) not null unique,
+school_code number(3) not null,
+religion_code number(3) not null,
+graduate_day char(10) not null,
+foreign key(religion_code) references code_religion(religion_code),
+foreign key(school_code) references code_school(school_code),
+primary key(staff_no)
+);
+create sequence staff_seq start with 1 increment by 1;
+
+create table staff_skill (
+staff_skill_no number(3),
+staff_no number(3) not null,
+skill_code number(3) not null,
+primary key(staff_skill_no),
+foreign key(staff_no) references staff(staff_no),
+foreign key(skill_code) references code_skill(skill_code)
+);
+create sequence staff_skill_seq start with 1 increment by 1;
+
+
+
+
+
+
+// 데이터 oracle
+insert into code_skill values(code_skill_seq.nextval, 'Java' );
+insert into code_skill values(code_skill_seq.nextval, 'JSP' );
+insert into code_skill values(code_skill_seq.nextval, 'ASP' );
+insert into code_skill values(code_skill_seq.nextval, 'PHP' );
+insert into code_skill values(code_skill_seq.nextval, 'Delphi' );
+insert into code_religion values(code_religion_seq.nextval, '기독교' );
+insert into code_religion values(code_religion_seq.nextval, '천주교' );
+insert into code_religion values(code_religion_seq.nextval, '불교' );
+insert into code_religion values(code_religion_seq.nextval, '이슬람' );
+insert into code_religion values(code_religion_seq.nextval, '무교' );
+insert into code_school values(code_school_seq.nextval, '고졸' );
+insert into code_school values(code_school_seq.nextval, '전문대졸' );
+insert into code_school values(code_school_seq.nextval, '일반대졸' );
+
+insert into staff values(staff_seq.nextval,'저팔계','831225-1122331',2,3,sysdate-15*365);
+insert into staff values(staff_seq.nextval,'사오정','851225-1092492',1,2,sysdate-17*365);
+insert into staff values(staff_seq.nextval,'손오공','931225-1028182',3,3,sysdate-10*365);
+insert into staff values(staff_seq.nextval,'삼장법사','781225-1820382',3,4,sysdate-19*365);
+insert into staff values(staff_seq.nextval,'홍길동','951225-1130292',1,1,sysdate-10*365);
+insert into staff values(staff_seq.nextval,'임꺽정','881225-1123092',3,5,sysdate-15*365);
+insert into staff values(staff_seq.nextval,'이순신','891225-1058722',3,2,sysdate-16*365);
+insert into staff values(staff_seq.nextval,'오일남','781225-1402852',2,4,sysdate-19*365);
+insert into staff values(staff_seq.nextval,'성기훈','911225-1907836',1,5,sysdate-13*365);
+insert into staff values(staff_seq.nextval,'조상우','921225-1058372',1,3,sysdate-12*365);
+insert into staff values(staff_seq.nextval,'장덕수','861225-1583937',2,4,sysdate-17*365);
+insert into staff values(staff_seq.nextval,'강새벽','961225-2756271',3,3,sysdate-10*365);
+insert into staff values(staff_seq.nextval,'한미녀','861225-2322431',2,2,sysdate-15*365);
+
+
+
+commit;
