@@ -1,0 +1,173 @@
+<!-- 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+jquery_test_13.html
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ -->
+  <html>
+	<head>
+		<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+		<script language="JavaScript">
+		$(document).ready(function(){
+			//-------------------------------------------
+			// id=skills 를 가진 태그의 아들 중 name="skill~"을 가진 태그들에
+			// change 이벤트가 발생하면 실행할 코드 설정
+			//-------------------------------------------
+			$("#skills").children("[name^=skill]").change(function(){
+				//-------------------------------------------
+				// change 이벤트가 발생한 select 태그를 관리하는 JQuery 객체의 메위주를 얻어
+				// 변수 selectObj에 저장하기
+				//-------------------------------------------
+				var selectObj = $(this);
+				// change 이벤트가 발생한 select 태그의 현재 선택값을 얻어
+				// 변수 choicedVal 저장
+				//-------------------------------------------
+				var choicedVal = selectObj.val();
+				//-------------------------------------------
+				// change 이벤트가 발생한 select 태그의 형제 중 나의 인덱스 번호 저장
+				//-------------------------------------------
+				var idx = selectObj.index();
+				//-------------------------------------------
+				// change 이벤트가 발생한 select 태그의 선택값과 형제들의 선택값을
+				// 저장할 Array 객체 생성하고 선택값을 저장
+				//-------------------------------------------
+				var values = [];
+				var allSelectObj = selectObj.parent().children("[name^=skill]");
+				allSelectObj.each(function(){
+						var value = $(this).val();
+						if (value == null || value =="")	{
+							values.push("");
+						}
+						else {
+							values.push(value);
+						}
+					}
+				);
+				//-------------------------------------------
+				for ( var i = 0 ; i<values.length-1 ; i++ )	{
+					for ( var ii = i+1 ; ii<values.length ; ii++ )	{
+						//-------------------------------------------
+						// i 번째 select의 선택값은 없는데
+						// ii 번째 select 태그의 선택값은 있다면
+						// 즉 i번째 형은 없는데 ii번째 동생은 있다면
+						//-------------------------------------------
+						if (values[i] == "" && values[ii] != "" )	{
+							//-------------------------------------------
+							// i 번째 select 태그 이후의 모든 select 태그의 value 값을 비우기
+							//-------------------------------------------
+							allSelectObj.eq(i).nextAll().val("");
+						}
+						//-------------------------------------------
+						// i 번째 select 태그의 선택값 있고
+						// i 번째 select 태그의 선택값과
+						// ii 번째 select 태그의 선택값이 같으면
+						// 즉 i 번째 형과 ii 번째 동생의 값이 같으면
+						//-------------------------------------------
+						else if (values[i]!="" && values[i] == values[ii])	{
+							//-------------------------------------------
+							// i 번째 select 태그 이후의 모든 select 태그의 value값을 비우기
+							//-------------------------------------------
+							allSelectObj.eq(ii-1).nextAll().val("");
+						}
+					}
+				}
+				//-------------------------------------------
+				// 형이 가진 option 태그를 복사해 바로 아래 동생의 select 태그 안에
+				// 덮어 씌우고 형이 선택한 데이터가 있으면 그 데이터를 가진
+				// option 태그를 지우기
+				//-------------------------------------------
+				for ( var i = 0 ; i<allSelectObj.length-1 ; i++ )	{
+					// i번째 select 태그의 선택값을 얻어서 변수에 저장하기
+					var nowValue = allSelectObj.eq(i).val();
+					// i+1번째 select 태그의 선택값을 얻어서 변수에 저장하기
+					var nextValue = allSelectObj.eq(i+1).val();
+					// i번째 select 태그가 가진 option 태그를 복사해
+					// i+1번째 select 태그의 안에 덮어 씌우기
+					allSelectObj.eq(i+1).html(
+						allSelectObj.eq(i).html()
+					)
+					// i번째 select 태그의 선택값이 있으면
+					if (nowValue!="")	{
+						//-------------------------------------------
+						// i+1번째 select 태그 내부의 option 태그 중
+						// i번째 select 태그의 선택값을 가진 option 태그를 지우기
+						//-------------------------------------------
+						allSelectObj.eq(i+1).children().filter("[value='"+nowValue+"']").remove();
+						// i+1번째 select 태그에 선택값이 있었다면 그 값을 다시 선택하게 하기
+						if (nextValue!="")	{ 
+							allSelectObj.eq(i+1).val(nextValue);
+						}
+					}
+					// i번째 select 태그의 선택값이 없으면
+					else	{
+						// i+1번째 select 태그의 선택값 지우기
+						allSelectObj.eq(i+1).val("");
+					}
+				}
+
+
+				/*
+				//-------------------------------------------
+				if (choicedVal == null || choicedVal =="")	{
+					values.push("");
+				}
+				else {
+					values.push(choicedVal);
+				}
+				//-------------------------------------------
+				selectObj.nextAll().each(function() {
+						var value = $(this).val();
+						if (value == null || value == "")	{
+							values.push("");
+						}
+						else {
+							values.push(value);
+						}
+					}
+				);
+				*/
+				//$("body").append("<hr>" + values.join(","));
+				
+			});
+
+		});
+</script>
+	</head>
+	<body>
+		<!---------------------------------------------------------------->
+		<span id="skills">
+		[소유스킬] :
+		<select name="skill1">
+			<option value="">
+			<option value="JSP">JSP
+			<option value="ASP">ASP
+			<option value="PHP">PHP
+			<option value="Oracle">Oracle
+			<option value="Java">Java
+		</select>
+		<select name="skill2">
+			<option value="">
+			<option value="JSP">JSP
+			<option value="ASP">ASP
+			<option value="PHP">PHP
+			<option value="Oracle">Oracle
+			<option value="Java">Java
+		</select>
+		<select name="skill3">
+			<option value="">
+			<option value="JSP">JSP
+			<option value="ASP">ASP
+			<option value="PHP">PHP
+			<option value="Oracle">Oracle
+			<option value="Java">Java
+		</select>
+		<select name="skill4">
+			<option value="">
+			<option value="JSP">JSP
+			<option value="ASP">ASP
+			<option value="PHP">PHP
+			<option value="Oracle">Oracle
+			<option value="Java">Java
+		</select>
+		</span>
+	</body>
+</html>

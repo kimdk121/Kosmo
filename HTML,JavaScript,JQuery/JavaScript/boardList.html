@@ -1,0 +1,244 @@
+<HTML>
+<meta charset="UTF-8">
+<HEAD>
+	<TITLE></TITLE>
+
+	<!----------------------------------------------------------->
+	<!-- common_func.js											->
+	<!----------------------------------------------------------->	
+	<script src = "common_func.js"></script>
+	<script src = "common_data.js"></script>
+		
+	<script>
+		// ------------------------------------------------------------
+		// 요일별 메세지를 보여주는 OpenMessage 함수 선언하기
+		// ------------------------------------------------------------
+		function OpenWeekMessage(){
+			// ------------------------------------------------------------
+			// week 변수 선언. getTodayWeek() 함수 호출로 현재 요일 얻어 week 변수에 저장하기
+			// ------------------------------------------------------------
+			var week = getTodayWeek();
+			// ------------------------------------------------------------
+			// msg 변수 선언. 공용함수 안의 weekMsg 라는 변수에 저장된
+			// JSON 객체 안에서 week 변수안의 문자를 키값으로 가지고 놈의 대응 문자 얻어
+			// 변수 msg에 저장하기
+			// ------------------------------------------------------------
+			var msg = weekMsg[week];
+			// ------------------------------------------------------------
+			// 경고창 띄우기
+			// ------------------------------------------------------------
+			alert(msg)
+		}
+		
+		//function getScheduleMsg(){
+			// common_data.js 파일 안의 scheduleMsg 변수의 2차원 Array 객체 안을 검색
+			/*
+			for( var i=0; i<scheduleMsg.length; i++ ) {
+				for (var j=0; j<scheduleMsg[i].length; j++) {
+					var data = scheduleMsg[i][j];
+					alert(data)
+				}
+			}
+			*/
+			/*
+			var tot_msg="";
+			for (var i=0; i<scheduleMsg.length; i++) {
+				var date = scheduleMsg[i][0];
+				var msg = scheduleMsg[i][1];
+				if(isToday(date)){
+					//alert(msg)
+					tot_msg = tot_msg + msg;
+				}
+			}
+			return tot_msg;
+		}
+		*/
+		// ---------------------------------
+		// common_data.js 파일 안의 scheduleMsg 변수 안의 2차원 Array 객체에 접근해서
+		// 오늘 날짜가 일치하는 놈의 메시지들을 모아서 리턴하는 함수
+		// ---------------------------------
+		function getScheduleMsg(){
+			// ---------------------------------
+			// 메시지를 저장할 Array 객체 생성하기
+			// ---------------------------------
+			var arr=[];
+			// ---------------------------------
+			// scheduleMsg 변수 안의 2차원 Array 객체에 접근해서
+			// 오늘 날짜와 일치하는 놈의 메시지들을 모아서 Array 객체에 저장하기
+			// ---------------------------------
+			for (var i=0; i<scheduleMsg.length; i++) {
+				var date = scheduleMsg[i][0];
+				date = deleteBlank(date);
+				var msg = scheduleMsg[i][1];
+				if(isToday(date)){
+					arr.push(msg);
+				}
+			}
+			// ---------------------------------
+			// Array 객체에 저장된 메시지를 모두 붙여 문자로 리턴하기
+			// ---------------------------------
+			return arr.join(" ");
+		}
+		// ---------------------------------
+		// 명언을 리턴하는 함수 선언
+		// 명언 문자열은 common_data.js 파일 안의 goldenSaying 변수안에 저장되어 있다.
+		// ---------------------------------
+		function get_goldenSaying() {
+			// ---------------------------------
+			// goldenSaying 변수안에 저장된 Array 객체 안의 배열변수의 개수 얻기
+			// 이 개수가 명언의 개수이다
+			// ---------------------------------
+			var goldenSaying_cnt = goldenSaying.length;
+			// ---------------------------------
+			// 0 ~ 명언개수-1 사이의 무작위 인덱스 번호 얻기
+			// 이 인덱스 번호는 무작위 배열변수를 선택할 때 사용된다.
+			// ---------------------------------
+			var random_index = Math.floor(Math.random()*goldenSaying_cnt);
+			// ---------------------------------
+			// 무작위 인덱스 번호에 해당하는 배열변수 안의 데이터를 리턴하기
+			// ---------------------------------
+			return goldenSaying[random_index];
+		}
+		// ---------------------------------
+		// 오늘 부터 특정 날짜 까지의 남은 날이 10일이하일 때 그 특정 날짜에 대응하는 메시지들을 리턴하는 함수
+		// 특정 날짜와 메시지는 common_data.js 파일 안의 dDayMsg 변수 안에 저장되어 있다.
+		// ---------------------------------
+		function get_DDayMsg() {
+			// ---------------------------------
+			// 디데이에 대응하는 메시지를 저장할 Array 객체 생성하기
+			// ---------------------------------
+			var arr = [];
+			// ---------------------------------
+			// dDayMsg 변수안의 2차원 Array 객체에 접근해서
+			// 디데이가 10일 이하일 때의 메시지들을 모아서 Array 객체에 저장하기
+			// ---------------------------------
+			for (var i=0; i<dDayMsg.length ; i++ ) {
+				var date = dDayMsg[i][0];
+				date = deleteBlank(date);
+				var msg = dDayMsg[i][1];
+				// ---------------------------------
+				// get_dDay 함수 호출하여 오늘부터 Array 객체 안의 i번째 날짜까지의
+				// 남은 일수 구해서 변수 dDay에 저장하기
+				// ---------------------------------
+				var dDay = get_dDay(date);
+				// ---------------------------------
+				// 구한 디데이가 0~10일 사이면 Array 객체 저장하기
+				// ---------------------------------
+				if ( dDay>=0 && dDay<=10 ) {
+					arr.push( date + "까지" + msg + "는" + dDay + "일 남았습니다.");
+				}
+			}
+			// ---------------------------------
+			// Array 객체에 저장된 메시지들이 1개 이상이면 모든 메시지를 붙여 리턴하기
+			// ---------------------------------
+			if( arr.length>0 ) {
+				return arr.join("<br>");
+			} 
+			// ---------------------------------
+			// Array 객체에 저장된 메시지들이 0개면 "" 리턴하기
+			// ---------------------------------
+			else {
+				return "";
+			}
+			
+		}
+
+		</script>
+</HEAD>
+
+<BODY onLoad = "OpenWeekMessage();">
+	<center>
+  
+		게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		
+		<!----------------------------------------------------------->
+		<!-- a 태그로 새글쓰기를 끌어안아서 클릭하면 다른 페이지 문서 열기->
+		<!----------------------------------------------------------->	
+		<!-- <a href="boardRegForm.html">[새글쓰기]</a><br><br> -->
+
+		<!----------------------------------------------------------->
+		<!-- span 태그로 새글쓰기를 끌어안아서 클릭하면 다른 페이지 문서 열기->
+		<!-- <태그명 on 이벤트명 = "자스코딩"> -->
+		<!----------------------------------------------------------->	
+		<span style="cursor:pointer;" onclick="location.replace('boardRegForm.html')">[새글쓰기]</span>
+
+		<!----------------------------------------------------------->
+		<!-- span 태그로 로그아웃을 끌어안아서 클릭하면 다른 페이지 문서 열기->
+		<!-- <태그명 on 이벤트명 = "자스코딩"> -->
+		<!----------------------------------------------------------->	
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="cursor:pointer;" onclick="location.replace('loginForm.html')">[로그아웃]</span>
+
+
+		<table border=0 style="border-collapse:collapse" cellpadding=5>	
+			<tr	bgcolor="lightgray" style="cursor:pointer" >
+				<th>번호</th>
+				<th width=300>제목</th>
+				<th>성명</th>
+				<th>작성일</th>
+				<th>조회수</th>
+			</tr>
+			<tr style="cursor:pointer" onclick="location.replace('boardContentForm1.html')">
+				<td align="center">6</td>
+				<td>청년 실직 문제는 대기업 문제</td>
+				<td>설현</td>
+				<td>2011.12.06</td>
+				<td>0</td>
+			</tr>
+			<tr	bgcolor="#F2F2F2" style="cursor:pointer"	onclick="location.replace('boardContentForm2.html')">
+				<td align="center">5</td>
+				<td>경제 침체의 원인</td>
+				<td>사오정</td>
+				<td>2011.12.01</td>
+				<td>2</td>
+			</tr>
+			<tr style="cursor:pointer" onclick="location.replace('boardContentForm3.html')">
+				<td align="center">4</td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ안보문제</td>
+				<td>하하</td>
+				<td>2011.12.03</td>
+				<td>1</td>
+			</tr>
+			<tr	bgcolor="#F2F2F2" style="cursor:pointer" onclick="location.replace('boardContentForm4.html')">
+				<td align="center">3</td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ북한 핵 문제</td>
+				<td>전지현</td>
+				<td>2011.12.05</td>
+				<td>0</td>
+			</tr>
+			<tr style="cursor:pointer" onclick="location.replace('boardContentForm5.html')">
+				<td align="center">2</td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ나라 빚 관리 부실</td>
+				<td>저팔계</td>
+				<td>2011.12.02</td>
+				<td>1</td>
+			</tr>
+			<tr	bgcolor="#F2F2F2" style="cursor:pointer" onclick="location.replace('boardContentForm6.html')">
+				<td align="center">1</td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ엔화 하락 문제</td>
+				<td>김태희</td>
+				<td>2011.12.04</td>
+				<td>0</td>
+			</tr>
+		</table><br>
+
+		[처음] [이전] 1 [2] [3] [4] [5] [6] [7] [8] [9] [10] [다음] [마지막] <br><br>
+		<input type="text" name="keyword">
+		<input type="button" value="검색">
+		<input type="button" value="모두검색">
+
+		 <br><br><br>
+
+		 <script>
+			document.write("<table border=1 style='border-collapse:collapse' cellpadding=5>");
+			document.write("<tr><th>오늘날짜<td>"+getTodayYMDW());
+			document.write("<tr><th>일정메세지<td>"+getScheduleMsg());
+			document.write("<tr><th>오늘의 명언<td>"+get_goldenSaying());
+			document.write("<tr><th>D-day<td>"+get_DDayMsg());
+			document.write("</table>");
+		 </script>
+	</center>
+</BODY>
+</HTML>

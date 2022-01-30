@@ -1,0 +1,90 @@
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="jquery-1.11.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+			/*
+			//-------------------------------------------
+			// 변수 obj 선언하고 class="dogList" 를 가진 태그를 관리하는
+			// JQuery 객체를 생성하고 객체의 메위주를 obj에 저장하기
+			//-------------------------------------------
+			var tableObj = $(".dogList");
+			var trObj = tableObj.find("tr");
+
+			//-------------------------------------------
+			// trObj에 저장된 JQuery 객체가 관리하는 태그에 차례대로 접근해서
+			// function(i){~} 라는 익명함수 안의 코딩을 실행하기
+			//-------------------------------------------
+			trObj.each(	function(i) {
+					//-------------------------------------------
+					// 각 tr 태그의 첫째 자식으로 <th>번호 또는 <td>일련번호 삽입하기
+					//-------------------------------------------
+					// 변수 thisObj 선언하고 i 번째 tr 태그를 관리하는
+					// JQuery 객체를 생성하고 객체의 메위주 저장하기
+					//-------------------------------------------
+					var thisObj = $(this);
+					//-------------------------------------------
+					// 익명함수의 매개변수 i 가 0이면
+					//-------------------------------------------
+					if (i==0) {
+						// i 번째 tr 태그 안의 첫째 자식으로 <th>번호를 삽입하기
+						thisObj.prepend("<th>번호")
+					}
+					//-------------------------------------------
+					// 익명함수의 매개변수 i 가 0이 아니면
+					//-------------------------------------------
+					else {
+						// i 번째 tr 태그 안의 첫째 자식으로 <th> i 변수값을 삽입하기
+						thisObj.prepend("<th>"+i)
+					}
+				}
+			);
+			*/
+			/*
+			var tableObj = $(".dogList");
+			var trObj = tableObj.find("tr");
+			var no=1;
+			trObj.each(	function(i) {
+					var thisObj = $(this);
+					if (i==0) {
+						thisObj.prepend("<th>번호")
+					}
+					else {
+						thisObj.prepend("<th>"+no++)
+					}
+				}
+			);
+			*/
+			var tableObj = $(".dogList");
+			var trObj = tableObj.find("tr");
+			var no= trObj.length-1;
+			trObj.each(	function(i) {
+					var thisObj = $(this);
+					if (i==0) {
+						thisObj.prepend("<th>번호")
+					}
+					else {
+						thisObj.prepend("<th>"+ no--)
+					}
+				}
+			);
+
+		});
+	</script>
+	
+</head>
+
+<body><center>
+	<table class="dogList" border=1  cellpadding=4 style="border-collapse:collapse">
+		<tr><th bgcolor="gray">개이름
+		<tr><td>진도개
+		<tr><td>셰퍼드
+		<tr><td>비글
+		<tr><td>삽살개
+		<tr><td>풍산개
+	</table>
+</body>
+</html>

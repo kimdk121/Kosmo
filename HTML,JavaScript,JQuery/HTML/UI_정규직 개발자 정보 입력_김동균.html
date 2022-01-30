@@ -1,0 +1,1275 @@
+<html>
+<meta charset="UTF-8">
+<head>
+	<title> </title>
+</head>
+
+<body>
+	<table border="3" align="center" style="border-collapse:collapse; " width = "900">
+	<tr bgcolor="lightgray">
+		<th><font size="5">[정규직 입력]</font></th>
+	</tr>
+	</table>
+	<br>
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>1. 개인정보</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="2" align="center" style="border-collapse:collapse; " width = "900" >
+			<tr>
+				<th bgcolor="lightgray" width="110">아이디</th>
+				<td width="170">
+					<input type="text" name="uid">
+				</td>
+				<th bgcolor="lightgray" width="110">암호</th>
+				<td width="170">
+					<input type="password" name="password">
+				</td>
+				<th bgcolor="lightgray" width="110">암호확인</th>
+				<td width="170">
+					<input type="password" name="password_re">
+				</td>
+			</tr>
+			<tr>
+				<th bgcolor="lightgray">이름</th>
+				<td>
+					<input type="text" name="name">
+				</td>
+				<th bgcolor="lightgray">주민번호</th>
+				<td>
+					<input type="text" name="jumin_num">
+				</td>
+				<th bgcolor="lightgray">핸드폰</th>
+				<td>
+					<input type="text" name="phone">
+				</td>
+			</tr>
+			<tr>
+				<th bgcolor="lightgray">이메일</th>
+				<td>
+					<input type="text" name="email">
+				</td>
+				<th bgcolor="lightgray">종교</th>
+				<td>
+					<select name="religion">
+						<option value=" "></option>
+						<option value="불교">불교</option>
+						<option value="기독교">기독교</option>
+						<option value="천주교">천주교</option>
+						<option value="무교">무교</option>
+					</select>
+				</td>
+				<th bgcolor="lightgray">병역</th>
+				<td>
+					<select name="military">
+						<option value=" "></option>
+						<option value="필">필</option>
+						<option value="미필">미필</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th bgcolor="lightgray">주소</th>
+				<td colspan=5>
+				[우편번호] :
+				<input type="text" name="postal_code">
+				&nbsp;&nbsp;
+				[주소] :
+				<input type="text" name="address" size=40>
+				</td>
+			</tr>
+			<tr>
+				<th bgcolor="lightgray">긴급 연락처</th>
+				<td colspan=5>
+					[연락 받을 사람 이름] :
+					<input type="text" name="emergency_person">
+					[관계] :
+					<select name="emergency_relation">
+						<option value=" "></option>
+						<option value="부모">부모</option>
+						<option value="형제">형제</option>
+						<option value="친척">친척</option>
+						<option value="지인">지인</option>
+					</select>
+					[전화번호] : 
+					<input type="text" name="emergency_phone">
+				</td>
+			</tr>
+			<tr>
+				<th bgcolor="lightgray">월급통장번호</th>
+				<td colspan=5> &nbsp;
+					<select name="salary_bank">
+						<option value="-은행선택-">-은행선택-</option>
+						<option value="NH농협은행">NH농협은행</option>
+						<option value="IBK기업은행">IBK기업은행</option>
+						<option value="KB국민은행">KB국민은행</option>
+						<option value="우리은행">우리은행</option>
+						<option value="SC제일은행">SC제일은행</option>
+						<option value="하나은행">하나은행</option>
+						<option value="신한은행">신한은행</option>
+						<option value="Sh수협은행">Sh수협은행</option>
+					</select> &nbsp;
+					<input type="text" name="salary_number">
+					(-없이 입력)
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>2. 학력</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="2" align="center" style="border-collapse:collapse; " width = "900" >
+				<tr>
+					<th bgcolor="lightgray" width="300">학교명</th>
+					<th bgcolor="lightgray" width="70">학부</th>
+					<th bgcolor="lightgray" width="100">전공과목</th>
+					<th bgcolor="lightgray" width="100">부전공과목</th>
+					<th bgcolor="lightgray" width="180">졸업일</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="edu_high_name">
+						고등학교 졸
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>&nbsp;
+						<select name="edu_high_year">
+							<option value=" "></option>
+							<option value="2000">2000</option>
+							<option value="2001">2001</option>
+							<option value="2002">2002</option>
+							<option value="2003">2003</option>
+							<option value="2004">2004</option>
+							<option value="2005">2005</option>
+							<option value="2006">2006</option>
+							<option value="2007">2007</option>
+							<option value="2008">2008</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+						년
+						<select name="edu_high_monty">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						월
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="edu_junior_name">
+						전문대 졸
+					</td>
+					<td align="center">
+						<select name="edu_junior_undergraduate">
+							<option value=" "></option>
+							<option value="학부">학부</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="edu_junior_major">
+					</td>
+					<td>
+						<input type="text" name="edu_junior_minor">
+					</td>
+					<td>&nbsp;
+						<select name="edu_junior_year">
+							<option value=" "></option>
+							<option value="2000">2000</option>
+							<option value="2001">2001</option>
+							<option value="2002">2002</option>
+							<option value="2003">2003</option>
+							<option value="2004">2004</option>
+							<option value="2005">2005</option>
+							<option value="2006">2006</option>
+							<option value="2007">2007</option>
+							<option value="2008">2008</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+						년
+						<select name="edu_junior_monty">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						월
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="edu_college_name">
+						대학교 학사
+					</td>
+					<td align="center">
+						<select name="edu_college_undergraduate">
+							<option value=" "></option>
+							<option value="학부">학부</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="edu_college_major">
+					</td>
+					<td>
+						<input type="text" name="edu_college_minor">
+					</td>
+					<td>&nbsp;
+						<select name="edu_college_year">
+							<option value=" "></option>
+							<option value="2000">2000</option>
+							<option value="2001">2001</option>
+							<option value="2002">2002</option>
+							<option value="2003">2003</option>
+							<option value="2004">2004</option>
+							<option value="2005">2005</option>
+							<option value="2006">2006</option>
+							<option value="2007">2007</option>
+							<option value="2008">2008</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+						년
+						<select name="edu_college_monty">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						월						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="edu_master_name">
+						대학교 석사
+					</td>
+					<td align="center">
+						<select name="edu_master_undergraduate">
+							<option value=" "></option>
+							<option value="학부">학부</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="edu_master_major">
+					</td>
+					<td>
+						<input type="text" name="edu_master_minor">
+					</td>
+					<td>&nbsp;
+						<select name="edu_master_year">
+							<option value=" "></option>
+							<option value="2000">2000</option>
+							<option value="2001">2001</option>
+							<option value="2002">2002</option>
+							<option value="2003">2003</option>
+							<option value="2004">2004</option>
+							<option value="2005">2005</option>
+							<option value="2006">2006</option>
+							<option value="2007">2007</option>
+							<option value="2008">2008</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+						년
+						<select name="edu_master_monty">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						월
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="edu_doctorate_name">
+						대학교 박사
+					</td>
+					<td align="center">
+						<select name="edu_doctorate_undergraduate">
+							<option value=" "></option>
+							<option value="학부">학부</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="edu_doctorate_major">
+					</td>
+					<td>
+						<input type="text" name="edu_doctorate_minor">
+					</td>
+					<td>&nbsp;
+						<select name="edu_doctorate_year">
+							<option value=" "></option>
+							<option value="2000">2000</option>
+							<option value="2001">2001</option>
+							<option value="2002">2002</option>
+							<option value="2003">2003</option>
+							<option value="2004">2004</option>
+							<option value="2005">2005</option>
+							<option value="2006">2006</option>
+							<option value="2007">2007</option>
+							<option value="2008">2008</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+						년
+						<select name="edu_doctorate_monty">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						월
+					</td>
+				</tr>
+			</table>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			* 검정고시 출신은 고등학교명에 [검정고시] 라고 입력하십시오..
+		</td>
+	</tr>
+	</table>
+	
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>3. 가족</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="2" align="center" style="border-collapse:collapse; " width = "900" >
+				<tr>
+					<th bgcolor="lightgray" width="150">관계</th>
+					<th bgcolor="lightgray" width="150">이름</th>
+					<th bgcolor="lightgray" width="150">직업</th>
+					<th bgcolor="lightgray" width="150">출생년도</th>
+					<th bgcolor="lightgray" width="150">동거여부</th>
+				</tr>
+				<tr align = "center">
+					<td>
+						<select name="family_relation">
+							<option value=" "></option>
+							<option value="부">부</option>
+							<option value="모">모</option>
+							<option value="형">형</option>
+							<option value="제">제</option>
+							<option value="자">자</option>
+							<option value="매">매</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" name="family_name">
+					</td>
+					<td>
+						<input type="text" name="family_job">
+					</td>
+					<td>
+						<select name="family_birth">
+							<option value=" "></option>
+							<option value="1980">1980</option>
+							<option value="1981">1981</option>
+							<option value="1982">1982</option>
+							<option value="1983">1983</option>
+							<option value="1984">1984</option>
+							<option value="1985">1985</option>
+							<option value="1986">1986</option>
+							<option value="1987">1987</option>
+							<option value="1988">1988</option>
+							<option value="1990">1990</option>
+							<option value="1991">1991</option>
+							<option value="1992">1992</option>
+							<option value="1993">1993</option>
+							<option value="1994">1994</option>
+							<option value="1995">1995</option>
+							<option value="1996">1996</option>
+							<option value="1997">1997</option>
+							<option value="1998">1998</option>
+							<option value="1999">1999</option>
+							<option value="2000">2000</option>
+							<option value="2001">2001</option>
+							<option value="2002">2002</option>
+							<option value="2003">2003</option>
+							<option value="2004">2004</option>
+							<option value="2005">2005</option>
+							<option value="2006">2006</option>
+							<option value="2007">2007</option>
+							<option value="2008">2008</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+					</td>
+					<td>
+						<input type="checkbox" name="family_live_together" value="동거">동거
+					</td>
+				</tr>
+			</table>
+			<center>
+			[행삭제] [행추가]
+			</center>
+		</td>
+	</tr>
+	</table>
+
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>4. 회사 경력</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="2" align="center" style="border-collapse:collapse; " width = "900" >
+				<tr>
+					<th bgcolor="lightgray" width="150">회사명/업무</th>
+					<th bgcolor="lightgray" width="100">분야</th>
+					<th bgcolor="lightgray" width="100">부서</th>
+					<th bgcolor="lightgray" width="100">직위</th>
+					<th bgcolor="lightgray" width="100">고용형태</th>
+					<th bgcolor="lightgray" width="110">연봉</th>
+					<th bgcolor="lightgray" width="200">입사일/퇴사일</th>
+				</tr>
+				<tr align="center">
+					<td>
+						회사명:
+						<input type="text" name="company_name">
+						<br>
+						업무:
+						<input type="text" name="company_duty">
+					</td>
+					<td>
+						<select name="company_area">
+							<option value=" "></option>
+							<option value="분야">분야</option>
+						</select>
+					</td>
+					<td>
+						<select name="company_department">
+							<option value=" "></option>
+							<option value="부서">부서</option>
+						</select></td>
+					<td>
+						<select name="company_position">
+							<option value=" "></option>
+							<option value="직위">직위</option>
+						</select>
+					</td>
+					<td>
+						<select name="company_emp_type">
+							<option value=" "></option>
+							<option value="고용형태">고용형태</option>
+						</select>
+					</td>
+					<td>
+						<select name="company_salary">
+							<option value=" "></option>
+							<option value="3000">3000</option>
+							<option value="3500">3500</option>
+							<option value="4000">4000</option>
+							<option value="4500">4500</option>
+							<option value="5000">5000</option>
+							<option value="5500">5500</option>
+							<option value="6000">6000</option>
+							<option value="6500">6500</option>
+							<option value="7000">7000</option>
+							<option value="7500">7500</option>
+							<option value="8000">8000</option>
+							<option value="8500">8500</option>
+							<option value="9000">9000</option>
+							<option value="10000">10000</option>
+						</select>
+						만원
+					</td>
+					<td>
+						입사일:
+						<select name="company_join_year">
+							<option value=""></option>
+							<option value="2000">2000</option>
+							<option value="2001">2001</option>
+							<option value="2002">2002</option>
+							<option value="2003">2003</option>
+							<option value="2004">2004</option>
+							<option value="2005">2005</option>
+							<option value="2006">2006</option>
+							<option value="2007">2007</option>
+							<option value="2008">2008</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+						년
+						<select name="company_join_month">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						월
+						<br>
+						퇴사일:
+						<select name="company_resignation_year">
+							<option value=""></option>
+							<option value="2000">2000</option>
+							<option value="2001">2001</option>
+							<option value="2002">2002</option>
+							<option value="2003">2003</option>
+							<option value="2004">2004</option>
+							<option value="2005">2005</option>
+							<option value="2006">2006</option>
+							<option value="2007">2007</option>
+							<option value="2008">2008</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+						년
+						<select name="company_join_month">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						월
+					</td>
+				</tr>
+			</table>
+			<center>
+			[행삭제] [행추가]
+			</center>
+		</td>
+	</tr>
+	</table>
+
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>5. 자격증</b>
+		</td>
+	</tr>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>
+							<input type="checkbox" name="license" value="정보처리기사">정보처리기사
+						</td>
+						<td>
+							<input type="checkbox" name="license" value="정보처리산업기사">정보처리산업기사
+						</td>
+						<td>
+							<input type="checkbox" name="license" value="OCP">OCP
+						</td>
+						<td>
+							<input type="checkbox" name="license" value="SCJP">SCJP
+						</td>
+						<td>
+							<input type="checkbox" name="license" value="OCJP">OCJP
+						</td>
+						<td>
+							<input type="checkbox" name="license" value="CCNA">CCNA
+						</td>
+						<td>
+							<input type="checkbox" name="license" value="MCSE">MCSE
+						</td>
+						<td>
+							<input type="checkbox" name="license" value="MCDBA">MCDBA
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>6. 외국어 (중급이상만 입력)</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="2" style="border-collapse:collapse; " width = "480" cellpadding=8 >
+				<tr>
+					<td bgcolor = "lightgray">
+						독해 가능 외국어
+					</td>
+					<td>
+						<input type="checkbox" name="language_reading" value="영어">영어
+						<input type="checkbox" name="language_reading" value="일어">일어
+						<input type="checkbox" name="language_reading" value="중국어">중국어
+						<input type="checkbox" name="language_reading" value="불어">불어
+						<input type="checkbox" name="language_reading" value="독일어">독일어
+					</td>
+				</tr>
+				<tr>
+					<td bgcolor = "lightgray">
+						회화 가능 외국어
+					</td>
+					<td>
+						<input type="checkbox" name="language_conversation" value="영어">영어
+						<input type="checkbox" name="language_conversation" value="일어">일어
+						<input type="checkbox" name="language_conversation" value="중국어">중국어
+						<input type="checkbox" name="language_conversation" value="불어">불어
+						<input type="checkbox" name="language_conversation" value="독일어">독일어
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>7. IT 교육센터</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="2" style="border-collapse:collapse; " width = "900">
+				<tr>
+					<th bgcolor="lightgray" width="80">교육센터명</th>
+					<th bgcolor="lightgray" width="80">교육기간</th>
+					<th bgcolor="lightgray" width="200">교육수료일</th>
+					<th bgcolor="lightgray" width="200">수료과목</th>
+				</tr>
+				<tr align ="center">
+					<td>
+						<input type="text" name="Center_name">
+					</td>
+					<td>
+						<select name="Center_month">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						개월
+					</td>
+					<td>
+						<select name="Center_complete_year">
+							<option value=""></option>
+							<option value="2000">2000</option>
+							<option value="2001">2001</option>
+							<option value="2002">2002</option>
+							<option value="2003">2003</option>
+							<option value="2004">2004</option>
+							<option value="2005">2005</option>
+							<option value="2006">2006</option>
+							<option value="2007">2007</option>
+							<option value="2008">2008</option>
+							<option value="2009">2009</option>
+							<option value="2010">2010</option>
+							<option value="2011">2011</option>
+							<option value="2012">2012</option>
+							<option value="2013">2013</option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+						년
+						<select name="Center_complete_month">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						월
+						<select name="Center_complete_day">
+							<option value=" "></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select>
+						일
+					</td>
+					<td>
+						<input type="checkbox" name="Center_complete_subject" value="HTML">HTML
+						<input type="checkbox" name="Center_complete_subject" value="Javascript">Javascript
+						<input type="checkbox" name="Center_complete_subject" value="JQuery">JQuery
+						<input type="checkbox" name="Center_complete_subject" value="Java">Java
+						<input type="checkbox" name="Center_complete_subject" value="JSP">JSP
+						<input type="checkbox" name="Center_complete_subject" value="Spring">Spring
+						<input type="checkbox" name="Center_complete_subject" value="Oracle">Oracle
+						<input type="checkbox" name="Center_complete_subject" value="MSSQL">MSSQL
+						<input type="checkbox" name="Center_complete_subject" value="MYSQL">MYSQL
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>8. 기호</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="2" style="border-collapse:collapse; " width = "900">
+				<tr>
+					<th bgcolor="lightgray" width="80">하루흡연량</th>
+					<th bgcolor="lightgray" width="80">소주주량</th>
+					<th bgcolor="lightgray" width="80">맥주주량 (500cc기준)</th>
+					<th bgcolor="lightgray" width="90">관심분야</th>
+				</tr>
+				<tr align="center">
+					<td>
+						<select name="favorite_smoke">
+							<option value=" "></option>
+							<option value="0">0</option>
+							<option value="0.5">0.5</option>
+							<option value="1">1</option>
+							<option value="1.5">1.5</option>
+							<option value="2">2</option>
+						</select>
+						갑
+					</td>
+					<td>
+						<select name="favorite_soju">
+							<option value=" "></option>
+							<option value="0">0</option>
+							<option value="0.5">0.5</option>
+							<option value="1">1</option>
+							<option value="1.5">1.5</option>
+							<option value="2">2</option>
+						</select>
+						병
+					</td>
+					<td>
+						<select name="favorite_beer">
+							<option value=" "></option>
+							<option value="0">0</option>
+							<option value="0.5">0.5</option>
+							<option value="1">1</option>
+							<option value="1.5">1.5</option>
+							<option value="2">2</option>
+						</select>
+						잔
+					</td>
+					<td>
+						<input type="checkbox" name="favorite_area" value="정치">정치
+						<input type="checkbox" name="favorite_area" value="경제">경제
+						<input type="checkbox" name="favorite_area" value="사회">사회
+						<input type="checkbox" name="favorite_area" value="문화">문화	
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>9. 취미</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td>
+						<input type="text" name="hobby_1">&nbsp;
+					</td>
+					<td>
+						<input type="text" name="hobby_2">&nbsp;
+					</td>
+					<td>
+						<input type="text" name="hobby_3">&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+	<table align="center" width = "900">
+	<tr>
+		<td>
+			<b>10. 개발경력</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="2" style="border-collapse:collapse; " width = "900" height = "350">
+				<tr>
+					<th bgcolor="lightgray" width="80" rowspan=2>프로젝트명 / 기간</th>
+					<th bgcolor="lightgray" width="80" rowspan=2>고객사 / 근무사 / 역할</th>
+					<th bgcolor="lightgray" width="80">개 발 환 경</th>
+				</tr>
+				<tr>
+
+
+					<th bgcolor="lightgray" width="80">기종/OS/언어/DBMS/TOOL/기타</th>
+				</tr>
+				<tr>
+					<td>
+						<table align="center">
+							<tr>
+								<th bgcolor="lightgray" width="80">프로젝트명</th>
+								<td>
+									<input type="text" name="career_project_name">
+								</td>
+							</tr>
+							<tr align="center">
+								<th bgcolor="lightgray" width="80">시작일</th>
+								<td>
+									<select name="career_project_start_year">
+										<option value=""></option>
+										<option value="2000">2000</option>
+										<option value="2001">2001</option>
+										<option value="2002">2002</option>
+										<option value="2003">2003</option>
+										<option value="2004">2004</option>
+										<option value="2005">2005</option>
+										<option value="2006">2006</option>
+										<option value="2007">2007</option>
+										<option value="2008">2008</option>
+										<option value="2009">2009</option>
+										<option value="2010">2010</option>
+										<option value="2011">2011</option>
+										<option value="2012">2012</option>
+										<option value="2013">2013</option>
+										<option value="2014">2014</option>
+										<option value="2015">2015</option>
+										<option value="2016">2016</option>
+										<option value="2017">2017</option>
+										<option value="2018">2018</option>
+										<option value="2019">2019</option>
+										<option value="2020">2020</option>
+									</select>
+									년
+									<select name="career_project_start_month">
+										<option value=" "></option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>
+									월
+								</td>
+							</tr>
+							<tr align="center">
+								<th bgcolor="lightgray" width="80">종료일</th>
+								<td>
+									<select name="career_project_end_year">
+										<option value=""></option>
+										<option value="2000">2000</option>
+										<option value="2001">2001</option>
+										<option value="2002">2002</option>
+										<option value="2003">2003</option>
+										<option value="2004">2004</option>
+										<option value="2005">2005</option>
+										<option value="2006">2006</option>
+										<option value="2007">2007</option>
+										<option value="2008">2008</option>
+										<option value="2009">2009</option>
+										<option value="2010">2010</option>
+										<option value="2011">2011</option>
+										<option value="2012">2012</option>
+										<option value="2013">2013</option>
+										<option value="2014">2014</option>
+										<option value="2015">2015</option>
+										<option value="2016">2016</option>
+										<option value="2017">2017</option>
+										<option value="2018">2018</option>
+										<option value="2019">2019</option>
+										<option value="2020">2020</option>
+									</select>
+									년
+									<select name="career_project_end_month">
+										<option value=" "></option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>
+									월
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table align="center">
+							<tr>
+								<th bgcolor="lightgray">고객사</th>
+								<td>
+									<input type="text" name="career_client">
+								</td>
+							</tr>
+							<tr>
+								<th bgcolor="lightgray">근무사</th>
+								<td>
+									<input type="text" name="career_worker">
+								</td>
+							</tr>
+							<tr>
+								<th bgcolor="lightgray">역할</th>
+								<td></td>
+							</tr>
+							<tr align="center">
+								<td colspan=2 width=10>
+									<input type="checkbox" name="career_part" value="개발">개발
+									<input type="checkbox" name="career_part" value="운영">운영
+									<input type="checkbox" name="career_part" value="유지보수">유지보수
+									<input type="checkbox" name="career_part" value="분석설계">분석설계
+									<input type="checkbox" name="career_part" value="PM">PM
+									<input type="checkbox" name="career_part" value="웹디">웹디
+								</td>
+
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table border="1" style="border-collapse:collapse;" align = "center" width = "400">
+							<tr>
+								<th bgcolor="lightgray">서버기종(H/W)</th>
+								<td>
+									<select name="career_server">
+										<option value=" "></option>
+										<option value="서버기종">서버기종</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th bgcolor="lightgray">OS</th>
+								<td>
+									<select name="career_os">
+										<option value=" "></option>
+										<option value="os">os</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th bgcolor="lightgray">언어</th>
+								<td>
+									<select name="career_language_1">
+										<option value=" "></option>
+										<option value="language">language</option>
+									</select>
+									<select name="career_language_2">
+										<option value=" "></option>
+										<option value="language">language</option>
+									</select>
+									<select name="career_language_3">
+										<option value=" "></option>
+										<option value="language">language</option>
+									</select>
+									<select name="career_language_4">
+										<option value=" "></option>
+										<option value="language">language</option>
+									</select>
+									<select name="career_language_5">
+										<option value=" "></option>
+										<option value="language">language</option>
+									</select>
+									<select name="career_language_6">
+										<option value=" "></option>
+										<option value="language">language</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th bgcolor="lightgray">프레임워크</th>
+								<td>
+									<select name="career_framework_1">
+										<option value=" "></option>
+										<option value="framework">framework</option>
+									</select>
+									<select name="career_framework_2">
+										<option value=" "></option>
+										<option value="framework">framework</option>
+									</select>
+									<select name="career_Framework_3">
+										<option value=" "></option>
+										<option value="framework">framework</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th bgcolor="lightgray">DBMS</th>
+								<td>
+									<select name="career_dbms_1">
+										<option value=" "></option>
+										<option value="dbms">dbms</option>
+									</select>
+									<select name="career_dbms_2">
+										<option value=" "></option>
+										<option value="dbms">dbms</option>
+									</select>
+									<select name="career_dbms_3">
+										<option value=" "></option>
+										<option value="dbms">dbms</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th bgcolor="lightgray">개발 툴</th>
+								<td>
+									<select name="career_tool">
+										<option value=" "></option>
+										<option value="tool">tool</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th bgcolor="lightgray">기타</th>
+								<td>
+									<select name="career_etc_1">
+										<option value=" "></option>
+										<option value="etc">etc</option>
+									</select>
+									<select name="career_etc_2">
+										<option value=" "></option>
+										<option value="etc">etc</option>
+									</select>
+									<select name="career_etc_3">
+										<option value=" "></option>
+										<option value="etc">etc</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<center>
+			[행삭제] [행추가]
+			</center>
+		</td>
+	</tr>
+	</table>
+<br>
+<center>
+<input type="button" name="save" value="저장" style="WIDTH: 150pt">
+</center>
+</body>
+
+</html>

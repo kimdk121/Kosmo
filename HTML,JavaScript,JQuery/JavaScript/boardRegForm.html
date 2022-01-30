@@ -1,0 +1,283 @@
+<html>
+<meta charset="UTF-8">
+<head>
+	<title> </title>
+
+	<!----------------------------------------------------------->
+	<!-- common_func.js											->
+	<!----------------------------------------------------------->	
+	<script src = "common_func.js"></script>
+	<script>
+		//------------------------------------------------------
+		// 게시판 새글쓰기 화면에 입력한 데이터의 유효성 체크를 해주는
+		// checkRegForm 함수 선언
+		//------------------------------------------------------
+		function checkRegForm() {
+
+
+			//------------------------------------------------------
+			// 변수 formObj 선언하고 <form name="boardRegForm"> 태그를 관리하는
+			// Form 객체의 메위주 저장하기
+			//------------------------------------------------------
+			var formObj = document.boardRegForm;
+
+			// 유저가 입력한 이름 가져와서 변수 writer 에 저장하기
+			var writer = formObj.writer.value;
+			// 유저가 입력한 제목 가져와서 변수 subject 에 저장하기
+			var subject = formObj.subject.value;
+			// 유저가 입력한 이메일 가져와서 변수 email 에 저장하기
+			var email = formObj.email.value;
+			// 유저가 입력한 내용 가져와서 변수 content 에 저장하기
+			var content = formObj.content.value;
+			// 유저가 입력한 이미지명 가져와서 변수 pwd 에 저장하기
+			var pic = formObj.pic.value;
+			// 유저가 입력한 비밀번호 가져와서 변수 pwd 에 저장하기
+			var pwd = formObj.pwd.value;
+
+			//------------------------------------------------------
+			// 유저가 입력한 이름의 유효성 검사
+			//------------------------------------------------------
+			// 한글 2~10자 사이의 문자열을 체크하는 RegExp 객체 생성
+			/*
+			var regExp = new RegExp(/^[가-힣]{2,10}$/);
+			// 만약 이름이 한글 2~10 자가 아니면
+			if(regExp.test(writer)==false) {
+				alert("이름은 한글 2~10자 사이로 합니다.")
+				// 함수 중단하기
+				return;
+			}
+			*/
+			//------------------------------------------------------
+			// 공용함수 이용 isvalidPattern 함수를 호출하여 이름 문자열이 합당한 이름이면
+			// 즉 호출한 값이 false면
+			//------------------------------------------------------
+			if(isValidPattern(/^[가-힣]{2,10}$/,writer)==false) {
+				alert("이름은 한글 2~10자 사이로 합니다.")
+				//------------------------------------------------------
+				// <form name=boardRegForm ~> 태그 안의
+				// <input type="text" name="writer"> 태그가 실행되어 출력되는 입력양식에 값을  비우기
+				//------------------------------------------------------
+				formObj.writer.value="";
+				//------------------------------------------------------
+				// <form name=boardRegForm ~> 태그 안의
+				// <input type="text" name="writer"> 태그에 포커스 넣기
+				//------------------------------------------------------
+				formObj.writer.focus();
+				// 함수 중단하기
+				return;
+			}
+			//------------------------------------------------------
+			// 유저가 입력한 제목의 유효성 검사
+			//------------------------------------------------------
+			
+			/*
+			if(subject.split(" ").join("")=="") {
+				alert("제목이 비어있거나 공백으로 구성되면 안됩니다.")
+				// 제목 입력란 비우기
+				document.boardRegForm.subject.value="";
+				// 함수 중단하기
+				return;
+			}
+			if(!(subject.length>=2 && subject.length<=30) ) {
+				alert("제목은 2~30이하 입력해야 합니다.")
+				// 함수 중단하기
+				return;
+			}
+			*/
+			if (isEmpty(subject)){
+				alert("제목이 비어있거나 공백으로 구성되면 안됩니다.")
+				// 제목 입력란 비우기
+				formObj.subject.value="";
+				//------------------------------------------------------
+				// <form name=boardRegForm ~> 태그 안의
+				// <input type="text" name="subject"> 태그에 포커스 넣기
+				//------------------------------------------------------
+				formObj.subject.focus();
+				// 함수 중단하기
+				return;
+			}
+			if(!(subject.length>=2 && subject.length<=30) ) {
+				alert("제목은 2~30이하 입력해야 합니다.")
+				// 함수 중단하기
+				return;
+			}
+			
+			//------------------------------------------------------
+			// 유저가 입력한 이메일의 유효성 검사
+			//------------------------------------------------------
+			// 이메일 문자열을 체크하는 RegExp 객체 생성하기
+			/*
+			var regExp = new RegExp (/^([0-9a-zA-Z_-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/);
+			// 만약에 입력한 이메일이 이메일 문자 패턴이 아니면
+			if(regExp.test(email)==false){
+				alert("이메일 형식이 아닙니다.")
+				// 함수 중단하기
+				return;
+			}
+			*/
+
+			if(isValidEmail(email)==false){
+				alert("이메일 형식이 아닙니다.")
+				// 함수 중단하기
+				return;
+			}
+			
+			//------------------------------------------------------
+			// 유저가 입력한 내용의 유효성 검사
+			//------------------------------------------------------
+			if (isEmpty(content)){
+				alert("내용이 비어있거나 공백으로 구성되면 안됩니다.")
+				// 제목 입력란 비우기
+				formObj.content.value="";
+				//------------------------------------------------------
+				// <form name=boardRegForm ~> 태그 안의
+				// <input textarea name="content"> 태그에 포커스 넣기
+				//------------------------------------------------------
+				formObj.content.focus();
+				// 함수 중단하기
+				return;
+			}
+			if(!(content.length<900) ) {
+				alert("내용은 900자 이하 입력해야 합니다.")
+				// 함수 중단하기
+				return;
+			}
+
+			//------------------------------------------------------
+			// 유저가 입력한 이미지의 유효성 검사
+			//------------------------------------------------------
+			// 만약 이미지가 선택되어 있으면 
+			if (isEmpty(pic)==false){
+				// 선택된 이미지 파일의 확장자가 jpg 도 아니고 png 도 아니면
+				// 경고하고 함수 중단.
+				//if( pic.lastIndexOf(".jpg")<0 || pic.lastIndexOf(".png")<0 ){
+				//if( !(pic.lastIndexOf(".jpg")>=0 || pic.lastIndexOf(".png")>=0) ){
+				//if( isValidPattern(/\.(jpg|png|JPG|PNG)$/,pic)==false) {
+				if( isValidPattern(/\.(jpg|png)$/,pic.toLowerCase() )==false) {
+					alert("선택하신 파일의 확장자는 jpg 또는 png 이어야 합니다.")
+					return;
+				}
+			}
+			
+			//------------------------------------------------------
+			// 유저가 입력한 암호의 유효성 검사
+			//------------------------------------------------------			
+			// 암호 문자열을 숫자 4개 체크하는 RegExp 객체 생성하기
+			/*
+			var regExp = new RegExp(/^[0-9]{4}$/);
+			// 만약에 입력한 암호가 암호 문자 패턴이 아니면
+			if(regExp.test(pwd)==false){
+				alert("암호 형식이 아닙니다.")
+				document.boardRegForm.pwd.value="";
+				//------------------------------------------------------
+				// <form name=boardRegForm ~> 태그 안의
+				// <input type="password" name="pwd"> 태그에 포커스 넣기
+				//------------------------------------------------------
+				document.boardRegForm.pwd.focus();
+				// 함수 중단하기
+				return;
+			}
+			*/
+			if(isValidPattern(/^[0-9]{4}$/,pwd)==false){
+				alert("암호 형식이 아닙니다.")
+				formObj.pwd.value="";
+				//------------------------------------------------------
+				// <form name=boardRegForm ~> 태그 안의
+				// <input type="password" name="pwd"> 태그에 포커스 넣기
+				//------------------------------------------------------
+				formObj.pwd.focus();
+				// 함수 중단하기
+				return;
+			}
+
+			//------------------------------------------------------
+			// confirm 함수 호출로 confirm 상자를 열고 확인 버튼을 누르면
+			//------------------------------------------------------
+			if( confirm("새글쓰기를 정말 할까요?") ) {
+				//------------------------------------------------------
+				// <form name=boardRegForm action="boardRegProc.html"> 태그의
+				// action 값에 설정된 서버쪽 페이지 호출하여 열기.
+				//------------------------------------------------------
+				 formObj.submit();
+			}
+
+			//alert( writer + " / " + subject + " / " + email + " / " + content + " / " + pwd);
+
+		}
+		//------------------------------------------------------
+		// body 태그를 다 읽고 난 후 실행할 함수 선언
+		//------------------------------------------------------
+		function setting() {
+			// 개발 과정중에 도움되라고 입력 양식에 데이터 삽입하기
+			document.boardRegForm.writer.value = "사오정";
+			document.boardRegForm.subject.value = "아 맥주 한잔";
+			document.boardRegForm.email.value = "abc@naver.com";
+			document.boardRegForm.content.value = "어쩌구 저쩌구";
+			document.boardRegForm.pwd.value = "1234";
+		
+		}
+
+	</script>
+
+</head>
+
+<body onLoad="setting();">
+<center>
+	<form name = "boardRegForm" enctype="multipart/form-data" action="boardRegProc.html">
+		새 글쓰기<br>
+
+		<table border=1 style="border-collapse:collapse" cellpadding=5>
+		<tr>
+			<th	bgcolor="#F2F2F2">이름</th>
+			<td><input type="text" name="writer" size=30 maxlength=13></td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">제목</th>
+			<td><input type="text" name="subject" size=60 maxlength=20></td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">이메일</th>
+			<td><input type="text" name="email" size=60 maxlength=30></td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">내용</th>
+			<td><textarea name="content" cols=62 rows=10></textarea></td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">사진</th>
+			<td><input type="file" name="pic"></td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">비밀번호</th>
+			<td><input type="password" name="pwd" size=30 maxlength=4></td>
+		</tr>
+
+
+
+		</table>
+			<table><tr><td height=3></td></tr></table>
+			<input type="button" value="저장" onClick="checkRegForm();">
+			<input type="reset" value="초기화">
+			<input type="button" value="전체 글보기"	onclick="location.replace('boardList.html');">
+			<input type="button" value="로그아웃"	onclick="location.replace('loginForm.html');">
+	<form>
+</center>
+</body>
+
+</html>
+
+<!--
+------------------------------
+자바에서 return 용도
+------------------------------
+	메소드 또는 생성자 안에서 나오는 키워드이다.
+	형식
+		--------------------
+		return;				=> 생성자 또는 메소드 안에서 나올 수 있는 형식
+		--------------------
+		return [데이터];	=> 메소드 안에서만 나올 수 있는 형식
+		--------------------
+	의미
+		메소드 또는 생성자 중단하고 오른쪽에 데이터가 있으면
+		메소드를 호출한 놈에서 이 데이터를 넘겨줘라
+-->

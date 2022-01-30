@@ -1,0 +1,173 @@
+<html>
+<meta charset="UTF-8">
+<head>
+	<title> </title>
+
+	<script src = "common_func.js"></script>
+	<script>
+		function checkUpForm() {
+			
+			//------------------------------------------------------
+			// form 태그를 관리하는 Form 객체의 메위주 구해서 변수 formObj에 저장하기
+			//------------------------------------------------------
+			var formObj = document.boardUpForm;
+			//------------------------------------------------------
+			// 입력된 암호 구해서 변수 pwd에 저장하기
+			//------------------------------------------------------
+			var pwd = formObj.pwd.value;
+			var writer = formObj.writer.value;
+			var subject = formObj.subject.value;
+			var email = formObj.email.value;
+			var content = formObj.content.value;
+			var pic = formObj.pic.value;
+
+			if(isValidPattern(/^[가-힣]{2,10}$/,writer)==false) {
+				alert("이름은 한글 2~10자 사이로 합니다.")
+				//------------------------------------------------------
+				// <form name=boardReplyRegForm ~> 태그 안의
+				// <input type="text" name="writer"> 태그가 실행되어 출력되는 입력양식에 값을  비우기
+				//------------------------------------------------------
+				formObj.subject.value="";
+				//------------------------------------------------------
+				// <form name=boardReplyRegForm ~> 태그 안의
+				// <input type="text" name="writer"> 태그에 포커스 넣기
+				//------------------------------------------------------
+				formObj.writer.focus();
+				// 함수 중단하기
+				return;
+			}
+			if (isEmpty(subject)){
+				alert("제목이 비어있거나 공백으로 구성되면 안됩니다.")
+				// 제목 입력란 비우기
+				formObj.subject.value="";
+				//------------------------------------------------------
+				// <form name=boardReplyRegForm ~> 태그 안의
+				// <input type="text" name="subject"> 태그에 포커스 넣기
+				//------------------------------------------------------
+				formObj.subject.focus();
+				// 함수 중단하기
+				return;
+			}
+			if(!(subject.length>=2 && subject.length<=30) ) {
+				alert("제목은 2~30이하 입력해야 합니다.")
+				// 함수 중단하기
+				return;
+			}
+			if(isValidEmail(email)==false){
+				alert("이메일 형식이 아닙니다.")
+				// 함수 중단하기
+				return;
+			}
+			if (isEmpty(content)){
+				alert("내용이 비어있거나 공백으로 구성되면 안됩니다.")
+				// 제목 입력란 비우기
+				formObj.content.value="";
+				//------------------------------------------------------
+				// <form name=boardReplyRegForm ~> 태그 안의
+				// <input textarea name="content"> 태그에 포커스 넣기
+				//------------------------------------------------------
+				formObj.content.focus();
+				// 함수 중단하기
+				return;
+			}
+			if(!(content.length<900) ) {
+				alert("내용은 900자 이하 입력해야 합니다.")
+				// 함수 중단하기
+				return;
+			}
+
+			if (isEmpty(pic)==false){
+				// 선택된 이미지 파일의 확장자가 jpg 도 아니고 png 도 아니면
+				// 경고하고 함수 중단.
+				//if( pic.lastIndexOf(".jpg")<0 || pic.lastIndexOf(".png")<0 ){
+				//if( !(pic.lastIndexOf(".jpg")>=0 || pic.lastIndexOf(".png")>=0) ){
+				//if( isValidPattern(/\.(jpg|png|JPG|PNG)$/,pic)==false) {
+				if( isValidPattern(/\.(jpg|png)$/,pic.toLowerCase() )==false) {
+					alert("선택하신 파일의 확장자는 jpg 또는 png 이어야 합니다.")
+					return;
+				}
+			}
+
+			//------------------------------------------------------
+			// 입력한 암호가 틀리면 경고하고 함수 중단
+			//------------------------------------------------------
+			if (pwd!=1234) {
+				alert("암호가 틀려서 수정이 불가능합니다.")
+				return;
+			}
+
+			if( confirm("수정 하시겠습니까?") ) {
+				formObj.submit();
+			}
+		}
+		
+
+		function checkDelForm() {
+			
+			var formObj = document.boardUpForm;
+			var pwd = formObj.pwd.value;
+		
+			if (pwd!=1234) {
+				alert("암호가 틀려서 삭제가 불가능합니다.")
+				return;
+			}
+
+			if( confirm("삭제 하시겠습니까?") ) {
+				document.boardDelForm.submit();
+			}
+		}
+
+	</script>
+</head>
+
+<body>
+<center>
+	<form name="boardUpForm" enctype="multipart/form-data" action="boardUpProc.html">
+		
+		[글 수정/삭제]<br>
+		<table><tr><td height=3></td></tr></table>
+		<table border=1 style="border-collapse:collapse" cellpadding=5>
+		<tr>
+			<th	bgcolor="#F2F2F2">이름</th>
+			<td><input type="text" name="writer" size=30 maxlength=13 value="설현"></td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">제목</th>
+			<td><input type="text" name="subject" size=60 maxlength=20 value="청년 실직 문제는 대기업 문제"></td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">이메일</th>
+			<td><input type="text" name="email" size=60 maxlength=30 value="a@naver.com"></td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">내용</th>
+			<td><textarea name="content" cols=62 rows=10>어쩌구 저쩌구</textarea></td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">이미지</th>
+			<td>
+				<img src="img/merona.jpg" width="30%"><br>
+				<input type="file" name="pic">
+			</td>
+		</tr>
+		<tr>
+			<th	bgcolor="#F2F2F2">비밀번호</th>
+			<td><input type="password" name="pwd" size=30 maxlength=4></td>
+		</tr>
+		</table>
+			<table><tr><td height=3></td></tr></table>
+			<input type="button" value="수정" onclick="checkUpForm();">
+			<input type="button" value="삭제" onclick="checkDelForm();">
+			<input type="reset" value="초기화">
+			<input type="button" value="전체 글보기"	onclick="location.replace('boardList.html');">
+			<input type="button" value="로그아웃"	onclick="location.replace('loginForm.html');">
+	</form>
+
+	<!----------------------------------------------------------->
+
+	<form name="boardDelForm" enctype="multipart/form-data" action="boardDelProc.html">
+
+</center>
+</body>
+
+</html>
