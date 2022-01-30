@@ -1,0 +1,70 @@
+/* ---------------------------------------------------------------- */
+/* body 태그, form 태그, td 태그, th 태그, pre 태그 관련 설정. */
+/* ---------------------------------------------------------------- */
+body, form, td, th, pre {
+    font-size: 7pt;                         /* 글자 크기 설정 */
+    color: black;                         /* 글자 색상 설정 */
+    font-family: 굴림,tahoma,돋움,verdana;  /* 글꼴 설정 */
+    height: 10px;
+}
+/* ---------------------------------------------------------------- */
+/* button 태그 관련 설정. */
+/* ---------------------------------------------------------------- */
+button {
+    font-size: 7pt;                         /* 글자 크기 설정 */
+    color: black;                         /* 글자 색상 설정 */
+    font-family: 굴림,tahoma,돋움,verdana;  /* 글꼴 설정 */
+    height: 17px;
+}
+/* ---------------------------------------------------------------- */
+/* a 태그 설정. */
+/* ---------------------------------------------------------------- */
+a:link {text-decoration: none;color:#696969}
+a:hover {text-decoration: none;color:#66ccff}
+a:visited {text-decoration: none;color:#330066}
+/* ---------------------------------------------------------------- */
+/* class="tbcss0",class="tbcss1,class="tbcss2" 를 가진 테이블 태그의 table,th,td 태그에 CSS 설정*/ 
+/* ---------------------------------------------------------------- */
+.tbcss0,.tbcss0 th,.tbcss0 td,.tbcss1,.tbcss1 th,.tbcss1 td,  .tbcss2,.tbcss2 th,.tbcss2 td{
+	border-collapse: collapse;  /* 경계선을 입체가 아닌 단일선으로 설정. */ 
+	border-style:solid;         /* 경계선 모양 설정. solid 는 단일선. */ 
+	font-size: 7pt;                         /* 글자 크기 설정. */ 
+	font-family: tahoma,굴림,돋움,verdana;  /* 글자체 설정. */ 
+}
+/* ---------------------------------------------------------------- */
+/* <table class="tbcss0"> ~</table> 안의 가로선 두께 0, 세로선 두께 0으로 하기
+   가로선, 세로선 안보이게 하기
+   경계선 색상은 직접 table 태그에 직접 설정 */ 
+/* ---------------------------------------------------------------- */
+.tbcss0, .tbcss0 td, .tbcss0 th {
+    border-width: 0px;
+    padding-left: 5pt;
+    padding-right: 5pt;
+}
+/* ---------------------------------------------------------------- */
+/* <table class="tbcss1"> ~</table> 안의 가로선 두께 1, 세로선 두께 0으로 하기
+   가로선만 보이게 하기
+   경계선 색상은 직접 table 태그에 직접 설정 */ 
+/* ---------------------------------------------------------------- */
+.tbcss1, .tbcss1 td, .tbcss1 th {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    padding-left: 5pt;
+    padding-right: 5pt;
+}
+/* ---------------------------------------------------------------- */
+/* <table class="tbcss2"> ~</table> 안의 가로선 두께 1, 세로선 두께 1으로 하기
+   가로선 세로선 모두 보이게 하기
+   경계선 색상은 직접 table 태그에 직접 설정 */ 
+/* ---------------------------------------------------------------- */
+.tbcss2, .tbcss2 td, .tbcss2 th {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    padding-left: 5pt;
+    padding-right: 5pt;
+}
+
