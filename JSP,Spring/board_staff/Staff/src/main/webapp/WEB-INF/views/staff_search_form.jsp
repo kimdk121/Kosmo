@@ -130,7 +130,7 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" name="boardSearchAll" class="boardSearchAll" value="전부검색" onclick="searchAll();">
 		<input type="reset" name="reset" class="reset" value="초기화">
-		<input type="button" name="save" class="save" value="등록" onclick="goBoardRegForm()">
+		<input type="button" name="save" class="save" value="등록" onclick="goInputPage()">
 	</form>
 	
 	<table>
@@ -150,11 +150,11 @@
 				<td>${staff.gender}</td>
 				<td>${staff.religion_name}</td>
 				<td>${staff.graduate_day}</td>
-				<td><input type="button" name="save" value="수정"></td>
+				<td><button name="upDel" value="수정" onclick="goUpdelPage(${staff.staff_no});">수정</button></td>
 			</tr>
 		</c:forEach>
 	</table>
-
+<button></button>
 	</center>
 </body>
 
@@ -167,8 +167,14 @@
 			
 		});
 
-		function goBoardRegForm() {
+		function goInputPage() {
 			location.href = "/staff/staffInputForm.do";
+		}
+		
+		function goUpdelPage(staff_no){
+			
+			
+			location.href = "/staff/staffUpdelForm.do?staff_no="+staff_no;
 		}
 	</script>
 </head>

@@ -1,6 +1,7 @@
 package com.staff.erp.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +46,17 @@ public class StaffController {
 	public String staffInputForm(Model model) {
 		
 		return "staff_input_form";
+	}
+	
+	/**
+	 * @Description 수정 화면 호출
+	 */
+	@GetMapping("/staffUpdelForm.do")
+	public String staffUpdelForm(@RequestParam Map<String, Object> param, Model model) {
+		Map<String, Object> personData = staffService.updelPage(param);
+		
+		model.addAttribute("personData",personData);
+		return "staff_updel_form";
 	}
 	
 	/**

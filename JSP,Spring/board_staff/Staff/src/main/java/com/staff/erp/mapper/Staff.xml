@@ -27,6 +27,29 @@
 	
 	</select>
 	
+	<select id="retrieve" resultType="HashMap">
+		select
+			staff_no
+			,staff_name
+			,jumin_no
+			,religion_code
+			,school_code 
+			,graduate_day
+		from
+			staff
+		where
+			staff_no = ${staff_no}
+	</select>
+	
+	<select id="retrieveSkill" resultType="int">
+		select
+			skill_code
+		from
+			staff_skill
+		where
+			staff_no = ${staff_no}
+	</select>
+	
 	<insert id="insertStaff">
 		insert into staff 
 		(

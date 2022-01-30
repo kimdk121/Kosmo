@@ -65,6 +65,46 @@ insert into staff values(11,'장덕수','861225-1583937',2,4,date_format(DATE_AD
 insert into staff values(12,'강새벽','961225-2756271',3,3,date_format(DATE_ADD(NOW(), INTERVAL -11 YEAR),'%Y-%m-%d'));
 insert into staff values(13,'한미녀','861225-2322431',2,2,date_format(DATE_ADD(NOW(), INTERVAL -15 YEAR),'%Y-%m-%d'));
 
+insert into staff_skill values (1,1);
+insert into staff_skill values (1,3);
+insert into staff_skill values (1,4);
+insert into staff_skill values (1,5);
+insert into staff_skill values (2,1);
+insert into staff_skill values (2,2);
+insert into staff_skill values (2,3);
+insert into staff_skill values (3,1);
+insert into staff_skill values (3,4);
+insert into staff_skill values (4,2);
+insert into staff_skill values (4,3);
+insert into staff_skill values (4,4);
+insert into staff_skill values (4,5);
+insert into staff_skill values (5,1);
+insert into staff_skill values (5,3);
+insert into staff_skill values (5,4);
+insert into staff_skill values (5,5);
+insert into staff_skill values (6,1);
+insert into staff_skill values (6,2);
+insert into staff_skill values (6,3);
+insert into staff_skill values (7,1);
+insert into staff_skill values (7,4);
+insert into staff_skill values (8,2);
+insert into staff_skill values (8,3);
+insert into staff_skill values (8,4);
+insert into staff_skill values (8,5);
+insert into staff_skill values (9,1);
+insert into staff_skill values (9,3);
+insert into staff_skill values (9,4);
+insert into staff_skill values (9,5);
+insert into staff_skill values (10,1);
+insert into staff_skill values (10,2);
+insert into staff_skill values (10,3);
+insert into staff_skill values (11,1);
+insert into staff_skill values (11,4);
+insert into staff_skill values (12,2);
+insert into staff_skill values (12,3);
+insert into staff_skill values (12,4);
+insert into staff_skill values (12,5);
+
 
 
 
@@ -151,6 +191,44 @@ insert into staff values(staff_seq.nextval,'장덕수','861225-1583937',2,4,sysd
 insert into staff values(staff_seq.nextval,'강새벽','961225-2756271',3,3,sysdate-10*365);
 insert into staff values(staff_seq.nextval,'한미녀','861225-2322431',2,2,sysdate-15*365);
 
-
+insert into staff_skill values (1,1);
+insert into staff_skill values (1,3);
+insert into staff_skill values (1,4);
+insert into staff_skill values (1,5);
+insert into staff_skill values (2,1);
+insert into staff_skill values (2,2);
+insert into staff_skill values (2,3);
+insert into staff_skill values (3,1);
+insert into staff_skill values (3,4);
+insert into staff_skill values (4,2);
+insert into staff_skill values (4,3);
+insert into staff_skill values (4,4);
+insert into staff_skill values (4,5);
+insert into staff_skill values (5,1);
+insert into staff_skill values (5,3);
+insert into staff_skill values (5,4);
+insert into staff_skill values (5,5);
+insert into staff_skill values (6,1);
+insert into staff_skill values (6,2);
+insert into staff_skill values (6,3);
+insert into staff_skill values (7,1);
+insert into staff_skill values (7,4);
+insert into staff_skill values (8,2);
+insert into staff_skill values (8,3);
+insert into staff_skill values (8,4);
+insert into staff_skill values (8,5);
+insert into staff_skill values (9,1);
+insert into staff_skill values (9,3);
+insert into staff_skill values (9,4);
+insert into staff_skill values (9,5);
+insert into staff_skill values (10,1);
+insert into staff_skill values (10,2);
+insert into staff_skill values (10,3);
+insert into staff_skill values (11,1);
+insert into staff_skill values (11,4);
+insert into staff_skill values (12,2);
+insert into staff_skill values (12,3);
+insert into staff_skill values (12,4);
+insert into staff_skill values (12,5);
 
 commit;

@@ -109,8 +109,8 @@
 		<!------------------------------------------------->
 		<input type="button" name="save" class="save" value="등록" onclick="ajaxInsert();">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="reset" name="reset" class="reset" value="초기화">
+		<input type="button" name="goBack" class="goBack" value="목록보기" onclick="goBoardSearchForm();">
 		
 	</form>
 
