@@ -1,7 +1,7 @@
 package chapter10;
 
-public class Soundable {
+public abstract class Soundable {
 	
-	String sound();
+	abstract String sound();
 
 }

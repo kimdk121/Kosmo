@@ -32,7 +32,7 @@ public class InnerClassTest {
 	public void test() {
 		int a; //지역변수
 		
-		LocalInnerClass local1;
+		//LocalInnerClass local1;
 		
 		class LocalInnerClass {
 			private String name;

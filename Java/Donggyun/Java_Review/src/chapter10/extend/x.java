@@ -1,7 +1,6 @@
 package chapter10.extend;
 
-public class x {
+public class x extends MyClass {
 	
-	void
-
+	int a = myme();
 }
