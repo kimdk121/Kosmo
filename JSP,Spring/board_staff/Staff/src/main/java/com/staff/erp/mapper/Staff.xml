@@ -69,6 +69,19 @@
 		)
 	</insert>
 	
+	<update id="updateStaff">
+		update
+			staff
+		set
+			staff_name = #{staff_name}
+			,jumin_no = concat(#{jumin_no1},'-',#{jumin_no2})
+			,school_code = #{school_code}
+			,religion_code = #{religion_code}
+			,graduate_day = concat(#{graduate_year},'-',#{graduate_month},'-',#{graduate_day})
+		where
+			staff_no = ${staff_no}
+	</update>
+	
 	<insert id="insertSkill">
 		insert into staff_skill
 		(
@@ -79,6 +92,13 @@
 			,#{skill_code}
 		)
 	</insert>
+	
+	<delete id="deleteStaffSkillAll">
+		delete
+		from
+			staff_skill 
+		where staff_no = ${staff_no}
+	</delete>
 	
 	
 </mapper>

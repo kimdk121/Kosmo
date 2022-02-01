@@ -29,7 +29,7 @@
 	<!--**********************************************************-->
 	<!-- [로그인 정보 입력 양식] 내포한 form 태그 선언 -->
 	<!--**********************************************************-->
-	<form name="staffRegForm" id="staffRegForm">
+	<form name="staffInputForm" id="staffInputForm">
 		<table border="2" align="center" style="border-collapse:collapse;" height = "100" width ="1000">
 			<tr align="center">
 				<td colspan="6">사원 정보 등록</td>
@@ -70,33 +70,33 @@
 					<input type="checkbox" name="skill_code" class="skill_code" value="3" >ASP
 					<input type="checkbox" name="skill_code" class="skill_code" value="4" >PHP
 					<input type="checkbox" name="skill_code" class="skill_code" value="5" >Delphi
-					<input type="hidden" name="skill_codeList" id="skill_codeList" value=""/>
+					<input type="hidden" name="skill_codeList" id="skill_codeList" value="">
 				</td>
 			</tr>
 			<tr align="center">
 				<td>졸업일</td>
 				<td colspan="5">
-					<select name="graduate_year">
-							<option value=" "></option>
-							<%for(int i =1980; i<2022; i++) { %>
-							<option value="<%=i%>"><%=i%></option>
-							<%} %>
-						</select>
-						년
-						<select name="graduate_month">
-							<option value=" "></option>
-							<%for(int i =1; i<13; i++) { %>
-							<option value="<%=i%>"><%=i%></option>
-							<%} %>
-						</select>
-						월
-						<select name="graduate_day">
-							<option value=" "></option>
-							<%for(int i =1; i<32; i++) { %>
-							<option value="<%=i%>"><%=i%></option>
-							<%} %>
-						</select>
-						일
+					<select name="graduate_year" >
+						<option value=" "></option>
+						<%for(int i =1980; i<2022; i++) { %>
+						<option value="<%=i%>"><%=i%></option>
+						<%} %>
+					</select>
+					년
+					<select name="graduate_month">
+						<option value=" "></option>
+						<%for(int i =1; i<13; i++) { %>
+						<option value="<%=i%>"><%=i%></option>
+						<%} %>
+					</select>
+					월
+					<select name="graduate_day">
+						<option value=" "></option>
+						<%for(int i =1; i<32; i++) { %>
+						<option value="<%=i%>"><%=i%></option>
+						<%} %>
+					</select>
+					일
 				</td>
 			</tr>
 		</table>
@@ -128,17 +128,12 @@
 		$(document).ready(function(){
 			
 		});
-		
 
-        
         
 		function goBoardSearchForm() {
 			location.href = "/staff/staffSearchForm.do";
 		}
 		
-		
-
-
 		function ajaxInsert() {
 			
 			// Skill_list 관련
@@ -148,9 +143,11 @@
 	        });
 	        $('#skill_codeList').val(chkArray); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
 			
+
+			
 	        // ajax 전송
 		    var result = confirm('체크된 항목을 저장하시겠습니까?');
-		    var form1 = $("#staffRegForm").serialize();
+		    var form1 = $("#staffInputForm").serialize();
 			if (result) {
 				var url = "/staff/ajaxInsert.do";
 				var contentTypeString = 'application/x-www-form-urlencoded';
@@ -162,6 +159,7 @@
 					success : function(result) {
 						if (result) {
 							alert('저장 되었습니다.');
+							goBoardSearchForm();
 						} else {
 							alert('오류가 발생했습니다.');
 						}

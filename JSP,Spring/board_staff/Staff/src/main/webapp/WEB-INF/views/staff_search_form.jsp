@@ -154,7 +154,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-<button></button>
 	</center>
 </body>
 

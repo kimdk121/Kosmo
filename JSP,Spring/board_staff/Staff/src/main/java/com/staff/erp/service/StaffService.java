@@ -7,8 +7,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-
+@Transactional
 @Service
 public class StaffService{
 	
@@ -17,7 +18,17 @@ public class StaffService{
 	
 	public int ajaxInsert(Map<String, Object> param) {
 		
-		staffMapper.insertStaff(param);
+		// 10이하 숫자에 0 붙임
+		int graduate_month = Integer.parseInt(param.get("graduate_month").toString());
+		int graduate_day = Integer.parseInt(param.get("graduate_day").toString());
+		if(graduate_month <10) {
+			param.put("graduate_month", String.format("%02d", graduate_month));
+		}
+		if(graduate_day <10) {
+			param.put("graduate_day",String.format("%02d", graduate_day));
+		}
+		
+		int result = staffMapper.insertStaff(param);
 		String[] skillList = param.get("skill_codeList").toString().split(",");
 		int staff_no = staffMapper.selectStaffNo(param);
 		param.put("staff_no", staff_no);
@@ -25,7 +36,31 @@ public class StaffService{
 			param.put("skill_code", i);
 			staffMapper.insertSkill(param);
 		}
-		return 1;
+		return result;
+	}
+	
+	public int ajaxUpdate(Map<String, Object> param) {
+		
+		// 10이하 숫자에 0 붙임
+		int graduate_month = Integer.parseInt(param.get("graduate_month").toString());
+		int graduate_day = Integer.parseInt(param.get("graduate_day").toString());
+		if(graduate_month <10) {
+			param.put("graduate_month", String.format("%02d", graduate_month));
+		}
+		if(graduate_day <10) {
+			param.put("graduate_day",String.format("%02d", graduate_day));
+		}
+		
+		int result = staffMapper.updateStaff(param);
+		String[] skillList = param.get("skill_codeList").toString().split(",");
+		int staff_no = staffMapper.selectStaffNo(param);
+		param.put("staff_no", staff_no);
+		staffMapper.deleteStaffSkillAll(param);
+		for(String i : skillList) {
+			param.put("skill_code", i);
+			staffMapper.insertSkill(param);
+		}
+		return result;
 	}
 	
 	public Map<String, Object> updelPage(Map<String, Object> param){

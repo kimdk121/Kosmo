@@ -65,8 +65,19 @@ public class StaffController {
 	@PostMapping("/ajaxInsert.do")
 	@ResponseBody
 	public int ajaxInsert(@RequestParam Map<String, Object> param) {
-		int i = staffService.ajaxInsert(param);
-		return i;
+		int result = staffService.ajaxInsert(param);
+		return result;
+		
+	}
+	
+	/**
+	 * @Description ajax 등록
+	 */
+	@PostMapping("/ajaxUpdate.do")
+	@ResponseBody
+	public int ajaxUpdate(@RequestParam Map<String, Object> param) {
+		int result = staffService.ajaxUpdate(param);
+		return result;
 		
 	}
 	

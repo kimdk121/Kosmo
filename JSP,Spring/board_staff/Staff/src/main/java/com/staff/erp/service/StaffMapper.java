@@ -15,6 +15,10 @@ public interface StaffMapper {
 	
 	public int insertSkill(Map<String, Object> param);
 	
+	public int updateStaff(Map<String, Object> param);
+	
+	public int deleteStaffSkillAll(Map<String, Object> param);
+	
 	public int selectStaffNo(Map<String, Object> param);
 	
 	public Map<String, Object> retrieve(Map<String, Object> param);

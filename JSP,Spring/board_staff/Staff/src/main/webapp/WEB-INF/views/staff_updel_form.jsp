@@ -77,12 +77,10 @@
 				<td>졸업일</td>
 				<td colspan="5">
 					<select name="graduate_year" id="graduate_year">
-					<% int graduate_year = Integer.parseInt(request.getParameter("graduate_year").toString());%>
-					
 						<option value=" "></option>
 						<%for(int i =1980; i<2022; i++) { %>
-						<option value="<%=i%>" <%=i.equals(graduate_year)?"selected":""%>><%=i%></option>
-						<%} %>
+						<option value="<%=i%>"><%=i%></option>
+						<%} %>  
 					</select>
 					년
 					<select name="graduate_month" id="graduate_month">
@@ -109,7 +107,7 @@
 		<!--- 선택한 클릭한 페이지번호를 저장할 hidden 입력양식 선언--->
 		<!--- 페이징 처리 관련 데이터이다.--->
 		<!------------------------------------------------->
-		<input type="button" name="save" class="save" value="등록" onclick="ajaxInsert();">
+		<input type="button" name="save" class="save" value="수정" onclick="ajaxUpdate();">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="reset" name="reset" class="reset" value="초기화">
 		<input type="button" name="goBack" class="goBack" value="목록보기" onclick="goBoardSearchForm();">
@@ -127,9 +125,52 @@
 		// body 태그 안의 소스를 모두 실행한 후에 실행할 자스 코드 설정
 		//**********************************************************
 		$(document).ready(function(){
-			
+			// 졸업일값 지정해줌
+			$("#graduate_year").val(${personData.graduate_year});
+			$("#graduate_month").val(${personData.graduate_month});
+			$("#graduate_day").val(${personData.graduate_day});
 		});
 		
+		function goBoardSearchForm() {
+			location.href = "/staff/staffSearchForm.do";
+		}
+
+		function ajaxUpdate() {
+			
+			// Skill_list 관련
+	        var chkArray = new Array(); // 배열 선언
+	        $('input:checkbox[name=skill_code]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+	            chkArray.push(this.value);
+	        });
+	        $('#skill_codeList').val(chkArray); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+			
+
+			
+	        // ajax 전송
+		    var result = confirm('체크된 항목을 저장하시겠습니까?');
+		    var form1 = $("#staffUpdelForm").serialize();
+			if (result) {
+				var url = "/staff/ajaxUpdate.do";
+				var contentTypeString = 'application/x-www-form-urlencoded';
+				$.ajax({
+					url : url,
+					type : 'post',
+					data : form1 ,
+					contentType : contentTypeString,
+					success : function(result) {
+						if (result) {
+							alert('저장 되었습니다.');
+							goBoardSearchForm();
+						} else {
+							alert('오류가 발생했습니다.');
+						}
+					},
+					error : function() {
+						alert('서버 에러 발생');
+					}
+				});
+			}
+		}
 	</script>
 </head>
 
