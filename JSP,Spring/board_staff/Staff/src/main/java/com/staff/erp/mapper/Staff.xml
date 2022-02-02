@@ -1,7 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.staff.erp.service.StaffMapper">
-
+	
+	<sql id="staffWhere">
+		<!-- 키워드 검색값이 있으면 -->
+		<if test="staff_name != null and staff_name.length() > 0">
+			and (
+				upper(staff_name) like upper('%#{staff_name}%')
+				)
+		</if>
+		
+		<if test="gender != null and gender.size() > 0">
+			and 
+			<foreach collection="gender" item="gender" open="(" separator=" or " close=")" index="idx">	
+				<if test='gender.equals("1")'>
+					substr(jumin_num,8,1) in('1','3')       
+				</if>
+				
+				<if test='gender.equals("2")'>
+					substr(jumin_num,8,1) in('2','4') 
+				</if>
+			</foreach>
+		</if>
+		
+		<if test="religion_code != null and religion_code > 0">
+			and religion_code = ${religion_code} 
+		</if>
+		
+		<if test="school_code != null and school_code.size() > 0">
+			and school_code = ${school_code} 
+		</if>
+		
+		<if test="skill_codeList != null and skill_code.size() > 0">
+			and
+			<foreach collection="skill_codeList" item="skill_codeList" open="(" separator=" or " close=")" index="idx">	
+				 C.skill_code like '%${skill_codeList}%'
+			</foreach>			
+		</if>
+		
+		<if test="graduate_year_1 != null and graduate_year_1.length() > 0 and graduate_year_2 != null and graduate_year_2.length() > 0">
+			and(
+				to_date(graduate_day, 'yyyymmdd') between to_date(#{graduate_day_start}, 'yyyymmdd') 
+					and add_months(to_date(#{graduate_day_end}, 'yyyymmdd'),1)-1
+			)	
+		</if>
+		
+ 		<if test="graduate_year_1 != null and graduate_year_1.length() > 0 and graduate_year_2 == null">
+			and(
+				to_date(graduate_day, 'yyyymmdd') >= to_date(#{graduate_day_start}, 'yyyymmdd') 
+			)	
+		</if>
+		
+  		<if test="graduate_year_1 == null and graduate_year_2 != null and graduate_year_2.length() > 0">
+			and(
+				to_date(graduate_day, 'yyyymmdd') 
+				<![CDATA[ 	<=  ]]>
+				add_months(to_date(#{graduate_day_end}, 'yyyymmdd'),1)-1
+			)	
+		</if>
+	</sql>
+	
+	
 	<select id="retrieveList" resultType="HashMap">
 		/*
 		StafftMapper.retrieveList

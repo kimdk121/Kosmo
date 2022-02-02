@@ -30,7 +30,7 @@
 	<!--**********************************************************-->
 	<!-- [로그인 정보 입력 양식] 내포한 form 태그 선언 -->
 	<!--**********************************************************-->
-	<form name="staff_search_form" method="post">
+	<form name="staffSearchForm" id="staffSearchForm">
 		<table border="2" align="center" style="border-collapse:collapse;" height = "100" width ="1000">
 			<tr align="center">
 				<td colspan="6">사원 정보 검색</td>
@@ -60,9 +60,9 @@
 			<tr align="center">
 				<td>학력</td>
 				<td>
-					<input type="radio" name="code_school" class="code_school" value="1" >고졸
-					<input type="radio" name="code_school" class="code_school" value="2" >전문대졸
-					<input type="radio" name="code_school" class="code_school" value="3" >일반대졸
+					<input type="radio" name="school_code" class="school_code" value="1" >고졸
+					<input type="radio" name="school_code" class="school_code" value="2" >전문대졸
+					<input type="radio" name="school_code" class="school_code" value="3" >일반대졸
 				</td>
 				<td>기술</td>
 				<td colspan="3">
@@ -71,13 +71,14 @@
 					<input type="checkbox" name="skill_code" class="skill_code" value="3" >ASP
 					<input type="checkbox" name="skill_code" class="skill_code" value="4" >PHP
 					<input type="checkbox" name="skill_code" class="skill_code" value="5" >Delphi
+					<input type="hidden" name="skill_codeList" id="skill_codeList" value="">
 				</td>
 			</tr>
 			<tr align="center">
 				<td>졸업일</td>
 				<td colspan="5">
 					<select name="graduate_year_1">
-							<option value=" "></option>
+							<option value=""></option>
 							<%for(int i =1980; i<2022; i++) { %>
 							<option value="<%=i%>"><%=i%></option>
 							<%} %>
@@ -85,35 +86,35 @@
 						</select>
 						년
 						<select name="graduate_month_1">
-							<option value=" "></option>
+							<option value=""></option>
 							<%for(int i =1; i<13; i++) { %>
 							<option value="<%=i%>"><%=i%></option>
 							<%} %>
 						</select>
 						월
 						<select name="graduate_day_1">
-							<option value=" "></option>
+							<option value=""></option>
 							<%for(int i =1; i<32; i++) { %>
 							<option value="<%=i%>"><%=i%></option>
 							<%} %>
 						</select>
 						일 ~
 						<select name="graduate_year_2">
-							<option value=" "></option>
+							<option value=""></option>
 							<%for(int i =1980; i<2022; i++) { %>
 							<option value="<%=i%>"><%=i%></option>
 							<%} %>
 						</select>
 						년
 						<select name="graduate_month_2">
-							<option value=" "></option>
+							<option value=""></option>
 							<%for(int i =1; i<13; i++) { %>
 							<option value="<%=i%>"><%=i%></option>
 							<%} %>
 						</select>
 						월
 						<select name="graduate_day_2">
-							<option value=" "></option>
+							<option value=""></option>
 							<%for(int i =1; i<32; i++) { %>
 							<option value="<%=i%>"><%=i%></option>
 							<%} %>
@@ -125,7 +126,7 @@
 		
 		<div style="height:5pt"></div>
 		
-		<input type="button" name="boardSearch" class="boardSearch" value="검색" onClick="search();">
+		<input type="button" name="boardSearch" class="boardSearch" value="검색" onClick="ajaxSearch();">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" name="boardSearchAll" class="boardSearchAll" value="전부검색" onclick="searchAll();">
@@ -174,6 +175,37 @@
 			
 			
 			location.href = "/staff/staffUpdelForm.do?staff_no="+staff_no;
+		}
+		
+		function ajaxSearch() {
+			
+			// Skill_list 관련
+	        var chkArray = new Array(); // 배열 선언
+	        $('input:checkbox[name=skill_code]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+	            chkArray.push(this.value);
+	        });
+	        $('#skill_codeList').val(chkArray); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+			
+	        // ajax 전송
+		    var form1 = $("#staffSearchForm").serialize();
+			var url = "/staff/ajaxSearchList.do";
+			var contentTypeString = 'application/x-www-form-urlencoded';
+			$.ajax({
+				url : url,
+				type : 'post',
+				data : form1 ,
+				contentType : contentTypeString,
+				success : function(result) {
+					if (result) {
+						
+					} else {
+						alert('오류가 발생했습니다.');
+					}
+				},
+				error : function() {
+					alert('서버 에러 발생');
+				}
+			});
 		}
 	</script>
 </head>

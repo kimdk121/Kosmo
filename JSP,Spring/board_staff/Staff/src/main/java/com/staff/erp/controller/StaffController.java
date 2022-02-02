@@ -81,6 +81,17 @@ public class StaffController {
 		
 	}
 	
+	/**
+	 * @Description ajax 검색
+	 */
+	@PostMapping("/ajaxSearchList.do")
+	@ResponseBody
+	public List<Map<String, Object>> ajaxSearchList(@RequestParam Map<String, Object> param) {
+		List<Map<String, Object>> result = staffService.ajaxSearchList(param);
+		return result;
+		
+	}
+	
 	
 
 }

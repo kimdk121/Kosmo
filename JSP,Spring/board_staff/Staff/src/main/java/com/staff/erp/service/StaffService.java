@@ -83,4 +83,39 @@ public class StaffService{
 		return personData;
 	}
 	
+	public List<Map<String, Object>> ajaxSearchList(Map<String, Object> param){
+		
+		if(param.get("graduate_year_1").toString() == null || param.get("graduate_year_1").toString() == "") {
+			param.put("graduate_year_1", "1900");
+			param.put("graduate_month_1", "01");
+			param.put("graduate_day_1", "01");
+			param.put("graduate_year_2", "2100");
+			param.put("graduate_month_2", "01");
+			param.put("graduate_day_2", "01");
+		}
+		else {
+			// 10이하 숫자에 0 붙임
+			int graduate_month_1 = Integer.parseInt(param.get("graduate_month_1").toString());
+			int graduate_day_1 = Integer.parseInt(param.get("graduate_day_1").toString());
+			int graduate_month_2 = Integer.parseInt(param.get("graduate_month_2").toString());
+			int graduate_day_2 = Integer.parseInt(param.get("graduate_day_2").toString());
+			if(graduate_month_1 <10) {
+				param.put("graduate_month_1", String.format("%02d", graduate_month_1));
+			}
+			if(graduate_day_1 <10) {
+				param.put("graduate_day_1",String.format("%02d", graduate_day_1));
+			}
+			if(graduate_month_2 <10) {
+				param.put("graduate_month_2", String.format("%02d", graduate_month_2));
+			}
+			if(graduate_day_2 <10) {
+				param.put("graduate_day_2",String.format("%02d", graduate_day_2));
+			}
+		}
+		
+		List<Map<String, Object>> result = staffMapper.ajaxSearchList(param);
+		
+		return result;
+	}
+	
 }

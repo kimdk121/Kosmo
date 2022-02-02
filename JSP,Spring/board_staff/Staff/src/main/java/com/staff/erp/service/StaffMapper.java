@@ -24,5 +24,7 @@ public interface StaffMapper {
 	public Map<String, Object> retrieve(Map<String, Object> param);
 	
 	public List<Integer> retrieveSkill(Map<String, Object> param);
+	
+	public List<Map<String, Object>> ajaxSearchList(Map<String, Object> param);
 
 }

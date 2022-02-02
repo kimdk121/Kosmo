@@ -70,7 +70,7 @@
 					<input type="checkbox" name="skill_code" class="skill_code" value="3" <c:if test="${fn:contains(personData.skillData, '3')}" > checked</c:if>>ASP
 					<input type="checkbox" name="skill_code" class="skill_code" value="4" <c:if test="${fn:contains(personData.skillData, '4')}" > checked</c:if>>PHP
 					<input type="checkbox" name="skill_code" class="skill_code" value="5" <c:if test="${fn:contains(personData.skillData, '5')}" > checked</c:if>>Delphi
-					<input type="hidden" name="skill_codeList" id="skill_codeList" value=""/>
+					<input type="hidden" name="skill_codeList" id="skill_codeList" value="">
 				</td>
 			</tr>
 			<tr align="center">
