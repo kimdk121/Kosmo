@@ -6,7 +6,7 @@
 		<!-- 키워드 검색값이 있으면 -->
 		<if test="staff_name != null and staff_name.length() > 0">
 			and (
-				upper(staff_name) like upper('%#{staff_name}%')
+				upper(A.staff_name) like upper('%#{staff_name}%')
 				)
 		</if>
 		
@@ -14,48 +14,44 @@
 			and 
 			<foreach collection="gender" item="gender" open="(" separator=" or " close=")" index="idx">	
 				<if test='gender.equals("1")'>
-					substr(jumin_num,8,1) in('1','3')       
+					substr(A.jumin_no,8,1) in('1','3')       
 				</if>
-				
 				<if test='gender.equals("2")'>
-					substr(jumin_num,8,1) in('2','4') 
+					substr(A.jumin_no,8,1) in('2','4') 
 				</if>
 			</foreach>
 		</if>
-		
 		<if test="religion_code != null and religion_code > 0">
-			and religion_code = ${religion_code} 
+			and A.religion_code = ${religion_code} 
 		</if>
-		
 		<if test="school_code != null and school_code.size() > 0">
-			and school_code = ${school_code} 
+			and A.school_code = ${school_code} 
 		</if>
-		
 		<if test="skill_codeList != null and skill_code.size() > 0">
 			and
 			<foreach collection="skill_codeList" item="skill_codeList" open="(" separator=" or " close=")" index="idx">	
 				 C.skill_code like '%${skill_codeList}%'
 			</foreach>			
 		</if>
-		
 		<if test="graduate_year_1 != null and graduate_year_1.length() > 0 and graduate_year_2 != null and graduate_year_2.length() > 0">
 			and(
-				to_date(graduate_day, 'yyyymmdd') between to_date(#{graduate_day_start}, 'yyyymmdd') 
-					and add_months(to_date(#{graduate_day_end}, 'yyyymmdd'),1)-1
+				A.graduate_day between 
+				date_format(concat(#{graduate_year_1},'-',#{graduate_month_1},'-',#{graduate_day_1}), '%Y-%m-%d') and
+				date_format(concat(#{graduate_year_2},'-',#{graduate_month_2},'-',#{graduate_day_2}), '%Y-%m-%d')
 			)	
 		</if>
 		
  		<if test="graduate_year_1 != null and graduate_year_1.length() > 0 and graduate_year_2 == null">
 			and(
-				to_date(graduate_day, 'yyyymmdd') >= to_date(#{graduate_day_start}, 'yyyymmdd') 
+				A.graduate_day >= 
+				date_format(concat(#{graduate_year_1},'-',#{graduate_month_1},'-',#{graduate_day_1}), '%Y-%m-%d')
 			)	
 		</if>
 		
   		<if test="graduate_year_1 == null and graduate_year_2 != null and graduate_year_2.length() > 0">
 			and(
-				to_date(graduate_day, 'yyyymmdd') 
-				<![CDATA[ 	<=  ]]>
-				add_months(to_date(#{graduate_day_end}, 'yyyymmdd'),1)-1
+				A.graduate_day	<![CDATA[ 	<=  ]]>
+				date_format(concat(#{graduate_year_2},'-',#{graduate_month_2},'-',#{graduate_day_2}), '%Y-%m-%d')
 			)	
 		</if>
 	</sql>
@@ -73,17 +69,14 @@
 			,B.religion_name "religion_name"
 			,A.graduate_day "graduate_day"
 		from 
-			staff A left join code_religion B on A.religion_code = B.religion_code 
-	</select>
-	
-	<select id="selectStaffNo" resultType="int">
-		select 
-			staff_no 
-		from 
-			staff 
-		where 
-			jumin_no = concat(#{jumin_no1},'-',#{jumin_no2})
-	
+			staff A 
+			left join code_religion B on A.religion_code = B.religion_code
+			left join staff_skill C on A.staff_no = C.staff_no 
+		where
+			1=1
+			<include refid="staffWhere"/>
+		group by 
+			staff_no,staff_name,gender,religion_name,graduate_day 
 	</select>
 	
 	<select id="retrieve" resultType="HashMap">
@@ -110,22 +103,25 @@
 	</select>
 	
 	<insert id="insertStaff">
-		insert into staff 
-		(
-			staff_no
-			,staff_name
-			,jumin_no
-			,school_code 
-			,religion_code
-			,graduate_day
-		) values (
-			(select ifnull(max(a.staff_no), 0)+1 from staff a)
-			,#{staff_name}
-			,concat(#{jumin_no1},'-',#{jumin_no2})
-			,#{school_code}
-			,#{religion_code}
-			,concat(#{graduate_year},'-',#{graduate_month},'-',#{graduate_day})
-		)
+	    <selectKey resultType="int" keyProperty="staff_no" order="BEFORE">
+	        (select ifnull(max(a.staff_no), 0)+1 from staff a)     
+	    </selectKey>    
+			insert into staff 
+			(
+				staff_no
+				,staff_name
+				,jumin_no
+				,school_code 
+				,religion_code
+				,graduate_day
+			) values (
+				#{staff_no}
+				,#{staff_name}
+				,concat(#{jumin_no1},'-',#{jumin_no2})
+				,#{school_code}
+				,#{religion_code}
+				,concat(#{graduate_year},'-',#{graduate_month},'-',#{graduate_day})
+			)
 	</insert>
 	
 	<update id="updateStaff">

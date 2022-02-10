@@ -30,8 +30,6 @@ public class StaffService{
 		
 		int result = staffMapper.insertStaff(param);
 		String[] skillList = param.get("skill_codeList").toString().split(",");
-		int staff_no = staffMapper.selectStaffNo(param);
-		param.put("staff_no", staff_no);
 		for(String i : skillList) {
 			param.put("skill_code", i);
 			staffMapper.insertSkill(param);
@@ -50,11 +48,8 @@ public class StaffService{
 		if(graduate_day <10) {
 			param.put("graduate_day",String.format("%02d", graduate_day));
 		}
-		
 		int result = staffMapper.updateStaff(param);
 		String[] skillList = param.get("skill_codeList").toString().split(",");
-		int staff_no = staffMapper.selectStaffNo(param);
-		param.put("staff_no", staff_no);
 		staffMapper.deleteStaffSkillAll(param);
 		for(String i : skillList) {
 			param.put("skill_code", i);
@@ -86,12 +81,6 @@ public class StaffService{
 	public List<Map<String, Object>> ajaxSearchList(Map<String, Object> param){
 		
 		if(param.get("graduate_year_1").toString() == null || param.get("graduate_year_1").toString() == "") {
-			param.put("graduate_year_1", "1900");
-			param.put("graduate_month_1", "01");
-			param.put("graduate_day_1", "01");
-			param.put("graduate_year_2", "2100");
-			param.put("graduate_month_2", "01");
-			param.put("graduate_day_2", "01");
 		}
 		else {
 			// 10이하 숫자에 0 붙임

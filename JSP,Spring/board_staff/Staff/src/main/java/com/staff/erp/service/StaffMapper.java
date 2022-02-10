@@ -19,8 +19,6 @@ public interface StaffMapper {
 	
 	public int deleteStaffSkillAll(Map<String, Object> param);
 	
-	public int selectStaffNo(Map<String, Object> param);
-	
 	public Map<String, Object> retrieve(Map<String, Object> param);
 	
 	public List<Integer> retrieveSkill(Map<String, Object> param);
