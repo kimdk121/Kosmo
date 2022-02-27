@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.staff.erp.service.StaffMapper">
+	
+	<sql id="staffWhere">
+		<!-- 키워드 검색값이 있으면 -->
+		<if test="staff_name != null and staff_name.length() > 0">
+			and (
+				upper(A.staff_name) like upper('%${staff_name}%')
+				)
+		</if>
+		
+		<if test="gender_list != null and gender_list.size() > 0">
+			and 
+			<foreach collection="gender_list" var="gender" open="(" separator=" or " close=")" index="idx">	
+				<if test='gender.equals("1")'>
+					substr(A.jumin_no,8,1) in('1','3')       
+				</if>
+				<if test='gender.equals("2")'>
+					substr(A.jumin_no,8,1) in('2','4') 
+				</if>
+			</foreach>
+		</if>
+		
+ 		<if test="religion_code != null and religion_code.length() > 0">
+			and A.religion_code = ${religion_code} 
+		</if>
+		<if test="school_code != null and school_code.length() > 0">
+			and A.school_code = ${school_code} 
+		</if>
+<!-- 		<if test="skill_codeList != null and skill_codeList.size() > 0">
+			and
+			<foreach collection="skill_codeList" item="skill_codeList" open="(" separator=" or " close=")" index="idx">	
+				 C.skill_code like '%${skill_codeList}%'
+			</foreach>			
+		</if> -->
+		<if test="graduate_year_1 != null and graduate_year_1.length() > 0 and graduate_year_2 != null and graduate_year_2.length() > 0">
+			and(
+				A.graduate_day between 
+				date_format(concat(#{graduate_year_1},'-',#{graduate_month_1},'-',#{graduate_day_1}), '%Y-%m-%d') and
+				date_format(concat(#{graduate_year_2},'-',#{graduate_month_2},'-',#{graduate_day_2}), '%Y-%m-%d')
+			)	
+		</if>
+		
+ 		<if test="graduate_year_1 != null and graduate_year_1.length() > 0 and graduate_year_2 == null">
+			and(
+				A.graduate_day >= 
+				date_format(concat(#{graduate_year_1},'-',#{graduate_month_1},'-',#{graduate_day_1}), '%Y-%m-%d')
+			)	
+		</if>
+		
+  		<if test="graduate_year_1 == null and graduate_year_2 != null and graduate_year_2.length() > 0">
+			and(
+				A.graduate_day	<![CDATA[ 	<=  ]]>
+				date_format(concat(#{graduate_year_2},'-',#{graduate_month_2},'-',#{graduate_day_2}), '%Y-%m-%d')
+			)	
+		</if>
+	</sql>
+	
+	
+	<select id="retrieveList" resultType="HashMap">
+		/*
+		StafftMapper.retrieveList
+		목록 조회
+		*/
+		select 
+			cast(A.staff_no as char(4)) "staff_no"
+			,A.staff_name "staff_name"
+			,CASE SUBSTR(A.JUMIN_NO,8,1) WHEN '1' THEN '남' WHEN  '2' THEN '여' END "gender"
+			,B.religion_name "religion_name"
+			,A.graduate_day "graduate_day"
+		from 
+			staff A 
+			left join code_religion B on A.religion_code = B.religion_code
+			left join staff_skill C on A.staff_no = C.staff_no 
+		where
+			1=1
+			<include refid="staffWhere"/>
+		group by 
+			staff_no
+	</select>
+	
+	<select id="retrieve" resultType="HashMap">
+		select
+			staff_no
+			,staff_name
+			,jumin_no
+			,religion_code
+			,school_code 
+			,graduate_day
+		from
+			staff
+		where
+			staff_no = ${staff_no}
+	</select>
+	
+	<select id="retrieveSkill" resultType="int">
+		select
+			skill_code
+		from
+			staff_skill
+		where
+			staff_no = ${staff_no}
+	</select>
+	
+	<insert id="insertStaff">
+	    <selectKey resultType="int" keyProperty="staff_no" order="BEFORE">
+	        (select ifnull(max(a.staff_no), 0)+1 from staff a)     
+	    </selectKey>    
+			insert into staff 
+			(
+				staff_no
+				,staff_name
+				,jumin_no
+				,school_code 
+				,religion_code
+				,graduate_day
+			) values (
+				#{staff_no}
+				,#{staff_name}
+				,concat(#{jumin_no1},'-',#{jumin_no2})
+				,#{school_code}
+				,#{religion_code}
+				,concat(#{graduate_year},'-',#{graduate_month},'-',#{graduate_day})
+			)
+	</insert>
+	
+	<update id="updateStaff">
+		update
+			staff
+		set
+			staff_name = #{staff_name}
+			,jumin_no = concat(#{jumin_no1},'-',#{jumin_no2})
+			,school_code = #{school_code}
+			,religion_code = #{religion_code}
+			,graduate_day = concat(#{graduate_year},'-',#{graduate_month},'-',#{graduate_day})
+		where
+			staff_no = ${staff_no}
+	</update>
+	
+	<insert id="insertSkill">
+		insert into staff_skill
+		(
+			staff_no
+			,skill_code
+		) values (
+			cast(#{staff_no} as unsigned)
+			,#{skill_code}
+		)
+	</insert>
+	
+	<delete id="deleteStaffSkillAll">
+		delete
+		from
+			staff_skill 
+		where staff_no = ${staff_no}
+	</delete>
+	
+	
+</mapper>

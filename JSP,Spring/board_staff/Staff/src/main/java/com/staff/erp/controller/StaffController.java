@@ -1,6 +1,7 @@
 package com.staff.erp.controller;
 
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +35,7 @@ public class StaffController {
 	@GetMapping("/staffSearchForm.do")
 	public String staffSearchForm(Model model) {
 		
-		List<Map<String, Object>> List = staffMapper.retrieveList();
-		model.addAttribute("staff",List);
+		
 		
 		return "staff_search_form";
 	}
@@ -86,9 +87,12 @@ public class StaffController {
 	 */
 	@PostMapping("/ajaxSearchList.do")
 	@ResponseBody
-	public List<Map<String, Object>> ajaxSearchList(@RequestParam Map<String, Object> param) {
-		List<Map<String, Object>> result = staffService.ajaxSearchList(param);
-		return result;
+	public Map<String, Object> ajaxSearchList(@RequestParam Map<String, Object> param) {
+		ModelMap model = new ModelMap();
+		List<Map<String, Object>> staffList = staffService.ajaxSearchList(param);
+		model.addAttribute("staff",staffList);
+		
+		return model;
 		
 	}
 	

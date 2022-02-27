@@ -102,7 +102,7 @@ public class StaffService{
 			}
 		}
 		
-		List<Map<String, Object>> result = staffMapper.ajaxSearchList(param);
+		List<Map<String, Object>> result = staffMapper.retrieveList(param);
 		
 		return result;
 	}

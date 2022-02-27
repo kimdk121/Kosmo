@@ -44,6 +44,7 @@
 				<td>
 					<input type="checkbox" name="gender" class="gender" value="1" >남
 					<input type="checkbox" name="gender" class="gender" value="2" >여
+					<input type="hidden" name="gender_list" id="gender_list" value="">
 				</td>
 				<td width ="100">종교</td>
 				<td>
@@ -135,25 +136,20 @@
 	</form>
 	
 	<table>
-		<tr>
-			<th>번호</th>
-			<th>이름</th>
-			<th>성별</th>
-			<th>종교</th>
-			<th>졸업일</th>
-			<th>수정</th>
-		</tr>
-		
-		<c:forEach var="staff" items="${staff}" >
+		<thead>
 			<tr>
-				<td>${staff.staff_no}</td>
-				<td>${staff.staff_name}</td>
-				<td>${staff.gender}</td>
-				<td>${staff.religion_name}</td>
-				<td>${staff.graduate_day}</td>
-				<td><button name="upDel" value="수정" onclick="goUpdelPage(${staff.staff_no});">수정</button></td>
+				<th>번호</th>
+				<th>이름</th>
+				<th>성별</th>
+				<th>종교</th>
+				<th>졸업일</th>
+				<th>수정</th>
 			</tr>
-		</c:forEach>
+		</thead>
+		<tbody id="staffData">
+		
+		</tbody>
+		
 	</table>
 	</center>
 </body>
@@ -164,7 +160,7 @@
 		// body 태그 안의 소스를 모두 실행한 후에 실행할 자스 코드 설정
 		//**********************************************************
 		$(document).ready(function(){
-			
+			ajaxSearch();
 		});
 
 		function goInputPage() {
@@ -180,11 +176,17 @@
 		function ajaxSearch() {
 			
 			// Skill_list 관련
-	        var chkArray = new Array(); // 배열 선언
+	        var skillArray = new Array(); // 배열 선언
 	        $('input:checkbox[name=skill_code]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
-	            chkArray.push(this.value);
+	        	skillArray.push(this.value);
 	        });
-	        $('#skill_codeList').val(chkArray); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+	        $('#skill_codeList').val(skillArray); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+	    	// gender_list 관련
+	        var genderArray = new Array(); // 배열 선언
+	        $('input:checkbox[name=gender]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+	        	genderArray.push(this.value);
+	        });
+	        $('#gender_list').val(genderArray); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
 			
 	        // ajax 전송
 		    var form1 = $("#staffSearchForm").serialize();
@@ -197,8 +199,10 @@
 				contentType : contentTypeString,
 				success : function(result) {
 					if (result) {
-						
-					} else {
+						var staffList = result.staff;
+						ajaxList(staffList);
+					}
+					 else {
 						alert('오류가 발생했습니다.');
 					}
 				},
@@ -207,6 +211,23 @@
 				}
 			});
 		}
+		
+		function ajaxList(staffList) {
+			var html = '';
+			for(var i=0; i<staffList.length; i++) {
+				html += '<tr>'
+				html += '	<td>'+staffList[i].staff_no+'</td>'
+				html += '	<td>'+staffList[i].staff_name+'</td>'
+				html += '	<td>'+staffList[i].gender+'</td>'	
+				html += '	<td>'+staffList[i].religion_name+'</td>'	
+				html += '	<td>'+staffList[i].graduate_day+'</td>'	
+				html += '	<td><button onclick="goUpdelPage('+staffList[i].staff_no+')">수정</button></td>'	
+				html += '</tr>'
+			}
+				$('#staffData').empty();
+				$('#staffData').append(html);
+		}
+				
 	</script>
 </head>
 
